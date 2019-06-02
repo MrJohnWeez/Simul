@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-
+#pragma warning disable 0618 // disable network obsolete warning
 public class MyNetManager : NetworkManager
 {
 
@@ -13,6 +13,15 @@ public class MyNetManager : NetworkManager
 	public int playerCount = 0;
 	public GameObject player1;
 	public GameObject player2;
+	public GameObject player1World;
+	public GameObject player2World;
+	public GameObject player1Spawn;
+	public GameObject player2Spawn;
+
+	private GameObject playerObject = null;
+	public GameObject joinMenu = null;
+	public GameObject searchingMenu = null;
+	public GameObject InGameHud = null;
 
 	int GetConnectionCount()
          {
@@ -25,13 +34,59 @@ public class MyNetManager : NetworkManager
              return count;
          }
 	private void Start() {
+		joinMenu.SetActive(true);
+		searchingMenu.SetActive(false);
+		InGameHud.SetActive(false);
 		debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<Text>();
 	}
-	public override void OnStartHost()
+
+	public void StartHostButton()
+	{
+		if (Application.platform != RuntimePlatform.WebGLPlayer)
+		{
+			StartHost();
+			debugText.text += "\nOnStartHost";
+			discovery.Initialize();
+			discovery.StartAsServer();
+			joinMenu.SetActive(false);
+		}
+	}
+
+	public void StopAll()
+	{
+		if (NetworkServer.active || IsClientConnected())
+		{
+			StopHost();
+		}
+		Destroy(discovery.gameObject);
+		Destroy(gameObject);
+	}
+
+	public void StartClientButton()
 	{
 		discovery.Initialize();
-		discovery.StartAsServer();
-		debugText.text += "\nOnStartHost";
+		discovery.StartAsClient();
+		joinMenu.SetActive(false);
+		Debug.Log("Started Client");
+		searchingMenu.SetActive(true);
+	}
+
+	public void StopSearching()
+	{
+		if(discovery.running)
+		{
+			discovery.StopBroadcast();
+		}
+		
+		joinMenu.SetActive(true);
+		searchingMenu.SetActive(false);
+	}
+
+	public override void OnStartHost()
+	{
+		// discovery.Initialize();
+		// discovery.StartAsServer();
+		// debugText.text += "\nOnStartHost";
 	}
 
 	public override void OnClientConnect(NetworkConnection conn) {
@@ -43,33 +98,45 @@ public class MyNetManager : NetworkManager
 		Debug.Log("Adding Player: " + GetConnectionCount());
 		if(GetConnectionCount() <= 1)
 		{
-			GameObject player = (GameObject)Instantiate(player1, Vector3.zero, Quaternion.identity);
-        	NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+			playerObject = (GameObject)Instantiate(player1, player1Spawn.transform.position, player1Spawn.transform.rotation);
+			playerObject.transform.parent = player1World.transform;
+        	NetworkServer.AddPlayerForConnection(conn, playerObject, playerControllerId);
 		}
 		else
 		{
-			GameObject player = (GameObject)Instantiate(player2, Vector3.zero, Quaternion.identity);
-        	NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+			playerObject = (GameObject)Instantiate(player2, player2Spawn.transform.position, player2Spawn.transform.rotation);
+			playerObject.transform.parent = player2World.transform;
+        	NetworkServer.AddPlayerForConnection(conn, playerObject, playerControllerId);
 		}
     }
 
-	// public void SpawnRoom(string fromAddress, string data)
-	// {
-	// 	GameObject test = GameObject.Instantiate(ViewRoom,parentRoom.transform);
-    //     ConnectToServerButton cb = test.GetComponentInChildren<ConnectToServerButton>();
-    //     cb.UpdateRoom(fromAddress, data);
-	// }
+	
+	
 
-	public override void OnStartClient(NetworkClient client)
+	public void JoinGame(string fromAddress, string data)
 	{
-		discovery.showGUI = false;
+		searchingMenu.SetActive(false);
+		InGameHud.SetActive(true);
+		networkAddress = fromAddress;
+        StartClient();
+		//discovery.showGUI = false;
 		debugText.text += "\nOnStartClient";
 	}
 
+	// public override void OnStartClient(NetworkClient client)
+	// {
+	// 	discovery.showGUI = false;
+	// 	debugText.text += "\nOnStartClient";
+	// }
+
 	public override void OnStopClient()
 	{
+		joinMenu.SetActive(true);
+		InGameHud.SetActive(false);
+		searchingMenu.SetActive(false);
+		MyNetworkDiscovery.hasRecievedBroadcastAtLeastOnce = false;
 		discovery.StopBroadcast();
-		discovery.showGUI = true;
+		//discovery.showGUI = true;
 		debugText.text += "\nOnStopClient";
 	}
 }

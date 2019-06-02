@@ -7,7 +7,7 @@ public class MyNetworkDiscovery : NetworkDiscovery
 {
     public MyNetManager networkManager;
     public Text debugText;
-    public bool hasRecievedBroadcastAtLeastOnce = false;
+    public static bool hasRecievedBroadcastAtLeastOnce = false;
         private void Start() {
         networkManager = GameObject.FindObjectOfType<MyNetManager>();
         debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<Text>();
@@ -40,10 +40,10 @@ public class MyNetworkDiscovery : NetworkDiscovery
         // StopBroadcast(); .. can not do this here
    
         // to start the client, simply do these two things:
-
+        networkManager.JoinGame(fromAddress, data);
         
-        networkManager.networkAddress = fromAddress;
-        // debugText.text += "\nfromAddress: " + fromAddress;
-        networkManager.StartClient();
+        // networkManager.networkAddress = fromAddress;
+        // // debugText.text += "\nfromAddress: " + fromAddress;
+        // networkManager.StartClient();
     }
 }
