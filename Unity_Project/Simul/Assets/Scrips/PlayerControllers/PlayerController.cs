@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public LayerMask toHitGround;
+    public GameObject cameraPlaceholder = null;
     public float moveSpeed = 7000;
     public float rotationSpeed = 100;
     public float gravityRotationSmoothing = 0.5f;
@@ -16,6 +17,10 @@ public class PlayerController : MonoBehaviour
     private float moveRot = 0;
     private float movePos = 0;
     private Quaternion oldRotation;
+    private float lookAngle;
+    Vector3 forwardMotion;
+    Vector3 rightMotion;
+    Vector3 motion;
 
 
     void Start()
@@ -28,6 +33,21 @@ public class PlayerController : MonoBehaviour
     {
         moveRot = Input.GetAxisRaw("Horizontal");
         movePos = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(moveRot, 0, movePos).normalized;
+        // moveRot = direction.x;
+        // movePos = direction.z;
+        
+        forwardMotion = movePos * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, transform.up).normalized;
+        rightMotion = moveRot * Vector3.ProjectOnPlane(cameraPlaceholder.transform.right, transform.up).normalized;
+        motion = forwardMotion + rightMotion;
+
+        // Quaternion newRotation = Quaternion.LookRotation(forwardMotion + rightMotion);
+
+        // transform.rotation = newRotation;
+        if(direction != Vector3.zero){
+            transform.LookAt(transform.position + motion, transform.up);
+        }
+
         oldRotation = transform.rotation;
         UpdatePlayerNormal();
     }
@@ -36,8 +56,8 @@ public class PlayerController : MonoBehaviour
         if(isActive)
         {
             // Update position and rotation of player
-            rb.AddRelativeTorque(Vector3.up * moveRot * rotationSpeed, ForceMode.Force);
-            rb.AddRelativeForce(Vector3.forward * movePos * moveSpeed, ForceMode.Force);
+            rb.AddForce(motion * moveSpeed, ForceMode.Force);
+            // rb.AddRelativeTorque();
         }
         rb.AddRelativeForce(Vector3.down * -gravity, ForceMode.Acceleration);
     }
