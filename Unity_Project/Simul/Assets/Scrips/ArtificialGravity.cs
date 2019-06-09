@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary> Allows a cube to have super gravity </summary>
 public class ArtificialGravity : MonoBehaviour
 {
-    private float gravity = -20;
+    private float gravity = -16;
     private Rigidbody rb = null;
     void Start()
     {

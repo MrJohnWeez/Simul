@@ -53,7 +53,7 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if(other.CompareTag("IsWeight"))
         {
-            print("Triggered!");
+            //print("Triggered!");
             isTriggered = true;
         }
     }

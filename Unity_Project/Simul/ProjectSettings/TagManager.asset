@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - IsWeight
+  - debugText
   layers:
   - Default
   - TransparentFX
