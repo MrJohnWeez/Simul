@@ -7,27 +7,23 @@ public class PlayerSwitcher : MonoBehaviour
 {
     public GameObject firstPlayer = null;
     public GameObject secondPlayer = null;
-    public GameObject firstPlayerCamera = null;
-    public GameObject secondPlayerCamera = null;
     public SceneController sceneController = null;
 
     private PlayerController firstPC = null;
-    private PlayerController2 secondPC = null;
+    private PlayerController secondPC = null;
 
-    private Camera mainCam = null;
     private bool isFirstPlayer = true;
 
     void Start()
     {
-        mainCam = Camera.main;
         firstPC = firstPlayer.GetComponent<PlayerController>();
-        secondPC = secondPlayer.GetComponent<PlayerController2>();
+        secondPC = secondPlayer.GetComponent<PlayerController>();
         UpdateActive(true);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(InputHandler.GetButtonDown("LeftButton"))
         {
             TogglePlayer();
         }
@@ -55,17 +51,5 @@ public class PlayerSwitcher : MonoBehaviour
     {
         firstPC.isActive = firstIsActive;
         secondPC.isActive = !firstIsActive;
-    }
-
-    private void LateUpdate() {
-        // Set the camera position to follow the correct player
-        if(isFirstPlayer)
-        {
-            mainCam.transform.SetPositionAndRotation(firstPlayerCamera.transform.position, firstPlayerCamera.transform.rotation);
-        }
-        else
-        {
-            mainCam.transform.SetPositionAndRotation(secondPlayerCamera.transform.position, secondPlayerCamera.transform.rotation);
-        }
     }
 }
