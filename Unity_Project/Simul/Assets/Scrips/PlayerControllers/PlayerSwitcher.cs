@@ -23,7 +23,7 @@ public class PlayerSwitcher : MonoBehaviour
 
     void Update()
     {
-        if(InputHandler.GetButtonDown("LeftButton"))
+        if(InputHandler.instance.GetButtonDown("LeftButton"))
         {
             TogglePlayer();
         }

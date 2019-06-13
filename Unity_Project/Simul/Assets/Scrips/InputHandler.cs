@@ -9,15 +9,37 @@ public enum ControllerType
     PS4
 }
 
-public static class InputHandler
+public class InputHandler: MonoBehaviour
 {
-    public static ControllerType connectedController;
-    public static float GetAxisRaw(string axis)
+    public Joystick touchMovement = null;
+    public static InputHandler instance = null;
+    public ControllerType connectedController;
+
+    private void Start() {
+        if(instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        instance = this;
+    }
+
+    public float GetAxisRaw(string axis)
     {
+        Vector2 touchMovementRaw = new Vector2(touchMovement.Horizontal, touchMovement.Vertical);
+
+        if(touchMovement && axis == "Horizontal" && touchMovementRaw.x != 0)
+        {
+            return touchMovementRaw.x;
+        }
+        else if(touchMovement && axis == "Vertical" && touchMovementRaw.y != 0)
+        {
+            return touchMovementRaw.y;
+        }
+        
         return Input.GetAxisRaw(axis);
     }
 
-    public static void CheckForConnectedControllers()
+    public void CheckForConnectedControllers()
     {
         string[] names = Input.GetJoystickNames();
         for (int x = 0; x < names.Length; x++)
@@ -38,12 +60,16 @@ public static class InputHandler
         connectedController = ControllerType.None;
     }
 
-    public static float GetAxis(string axis)
+    public float GetAxis(string axis)
     {
         float returnThis = 0;
         if(axis == "LookX")
         {
             returnThis = Input.GetAxis("Mouse X");
+            if(returnThis != 0)
+                return returnThis;
+
+            returnThis = CameraTouchController.delta.x;
             if(returnThis != 0)
                 return returnThis;
 
@@ -64,7 +90,7 @@ public static class InputHandler
         return returnThis;
     }
 
-    public static bool GetButtonDown(string buttonValue)
+    public bool GetButtonDown(string buttonValue)
     {
         bool returnThis = false;
         if(buttonValue == "DownButton")

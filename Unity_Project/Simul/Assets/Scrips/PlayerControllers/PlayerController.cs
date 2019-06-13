@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main.gameObject;
         cameraOffset = cameraPlaceholder.transform.position - transform.position;
-        InputHandler.CheckForConnectedControllers();
+        InputHandler.instance.CheckForConnectedControllers();
     }
 
     private void Update()
@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
         if(isActive)
         {
             //Cursor.visible = false;
-            float moveHorizontal = InputHandler.GetAxisRaw("Horizontal");
-            float moveVertical = InputHandler.GetAxisRaw("Vertical");
+            float moveHorizontal = InputHandler.instance.GetAxisRaw("Horizontal");
+            float moveVertical = InputHandler.instance.GetAxisRaw("Vertical");
             Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
 
             // If using keyboard make sure values are clamped to a magnitude of 1
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
         if(isActive)
         {
-            float horizontal = InputHandler.GetAxis("LookX") * cameraRotateSpeed;
+            float horizontal = InputHandler.instance.GetAxis("LookX") * cameraRotateSpeed;
             currentCameraRotation += horizontal * cameraRotateSpeed;
 
             cameraPlaceholder.transform.position = transform.position + cameraOffset;
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
             if(!isGrounded)
                 rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
     
-            if(isGrounded && InputHandler.GetButtonDown("DownButton"))
+            if(isGrounded && InputHandler.instance.GetButtonDown("DownButton"))
                 rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
             
         }
