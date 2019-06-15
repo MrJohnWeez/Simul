@@ -11,9 +11,12 @@ public enum ControllerType
 
 public class InputHandler: MonoBehaviour
 {
-    public Joystick touchMovement = null;
+    public Joystick leftTouchMovement = null;
+    public Joystick rightTouchMovement = null;
+    
     public static InputHandler instance = null;
     public ControllerType connectedController;
+    private Joystick touchMovement = null;
 
     private void Start() {
         if(instance != null)
@@ -21,6 +24,19 @@ public class InputHandler: MonoBehaviour
             Destroy(this.gameObject);
         }
         instance = this;
+        touchMovement = rightTouchMovement;
+    }
+
+    public void UpdateTouchStick()
+    {
+        if(SettingsController.joystickIsRight)
+        {
+            touchMovement = rightTouchMovement;
+        }
+        else
+        {
+            touchMovement = leftTouchMovement;
+        }
     }
 
     public float GetAxisRaw(string axis)
@@ -121,6 +137,36 @@ public class InputHandler: MonoBehaviour
             else if(connectedController == ControllerType.PS4)
             {
                 returnThis = Input.GetButtonDown("PS4 Button Left");
+            }
+        }
+        else if(buttonValue == "UpButton")
+        {
+            returnThis = Input.GetKeyDown(KeyCode.R); 
+            if(returnThis)
+                return returnThis;
+
+            if(connectedController == ControllerType.Xbox)
+            {
+                returnThis = Input.GetButtonDown("Xbox Button Up");
+            }
+            else if(connectedController == ControllerType.PS4)
+            {
+                returnThis = Input.GetButtonDown("PS4 Button Up");
+            }
+        }
+        else if(buttonValue == "Menu")
+        {
+            returnThis = Input.GetKeyDown(KeyCode.Escape); 
+            if(returnThis)
+                return returnThis;
+
+            if(connectedController == ControllerType.Xbox)
+            {
+                returnThis = Input.GetButtonDown("Xbox Button Menu");
+            }
+            else if(connectedController == ControllerType.PS4)
+            {
+                returnThis = Input.GetButtonDown("PS4 Button Options");
             }
         }
         else

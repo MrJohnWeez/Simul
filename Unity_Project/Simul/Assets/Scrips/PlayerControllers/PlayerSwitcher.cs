@@ -23,19 +23,17 @@ public class PlayerSwitcher : MonoBehaviour
 
     void Update()
     {
-        if(InputHandler.instance.GetButtonDown("LeftButton"))
+        if(!SettingsController.IsPaused)
         {
-            TogglePlayer();
-        }
+            if(InputHandler.instance.GetButtonDown("LeftButton"))
+            {
+                TogglePlayer();
+            }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            sceneController.MainMenu();
-        }
-
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            sceneController.Level1SinglePlayer();
+            if(InputHandler.instance.GetButtonDown("UpButton"))
+            {
+                sceneController.Level1SinglePlayer();
+            }
         }
     }
 

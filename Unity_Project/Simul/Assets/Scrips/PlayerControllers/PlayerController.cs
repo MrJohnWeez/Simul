@@ -25,22 +25,47 @@ public class PlayerController : MonoBehaviour
     public Vector3 cameraOffset; 
     float currentCameraRotation;
     private ControllerType controllerType = ControllerType.None;
+    private bool checkedForControllers = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main.gameObject;
         cameraOffset = cameraPlaceholder.transform.position - transform.position;
-        InputHandler.instance.CheckForConnectedControllers();
     }
 
     private void Update()
     {
+        if(!checkedForControllers && InputHandler.instance != null)
+        {
+            checkedForControllers = true;
+            InputHandler.instance.CheckForConnectedControllers();
+        }
+
+        #if !UNITY_EDITOR
+            if(SettingsController.IsPaused)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        #endif
+
         if(isActive)
         {
-            //Cursor.visible = false;
-            float moveHorizontal = InputHandler.instance.GetAxisRaw("Horizontal");
-            float moveVertical = InputHandler.instance.GetAxisRaw("Vertical");
+            float moveHorizontal = 0;
+            float moveVertical = 0;
+
+            if(!SettingsController.IsPaused)
+            {
+                moveHorizontal = InputHandler.instance.GetAxisRaw("Horizontal");
+                moveVertical = InputHandler.instance.GetAxisRaw("Vertical");
+            }
+
             Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
 
             // If using keyboard make sure values are clamped to a magnitude of 1
@@ -66,7 +91,13 @@ public class PlayerController : MonoBehaviour
 
         if(isActive)
         {
-            float horizontal = InputHandler.instance.GetAxis("LookX") * cameraRotateSpeed;
+            float horizontal = 0;
+
+            if(!SettingsController.IsPaused)
+            {
+                horizontal = InputHandler.instance.GetAxis("LookX") * cameraRotateSpeed;
+            }
+
             currentCameraRotation += horizontal * cameraRotateSpeed;
 
             cameraPlaceholder.transform.position = transform.position + cameraOffset;
@@ -82,7 +113,7 @@ public class PlayerController : MonoBehaviour
             if(!isGrounded)
                 rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
     
-            if(isGrounded && InputHandler.instance.GetButtonDown("DownButton"))
+            if(isGrounded && InputHandler.instance.GetButtonDown("DownButton") && !SettingsController.IsPaused)
                 rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
             
         }
