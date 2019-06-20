@@ -1,24 +1,16 @@
 fileFormatVersion: 2
-guid: d3d4dc7795a97c44eba5250c107f69a6
+guid: 7de35fbd8837c68419a9d626b9d83c58
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Camera
-    100002: Cylinder
-    100004: Light
-    100006: //RootNode
-    400000: Camera
-    400002: Cylinder
-    400004: Light
-    400006: //RootNode
-    2000000: Camera
+    100000: //RootNode
+    400000: //RootNode
     2100000: Wood Outer
     2100002: Lighter Rings
     2100004: Darker Rings
-    2300000: Cylinder
-    3300000: Cylinder
-    4300000: Cylinder
-    10800000: Light
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Log
   externalObjects: {}
   materials:
     importMaterials: 1

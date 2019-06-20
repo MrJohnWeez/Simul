@@ -1,15 +1,14 @@
 fileFormatVersion: 2
-guid: 0674a63ef8c8c6946b8439e7e66a438b
+guid: e1600548d194e2641af8e76c19836084
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Lighter gray
-    2100002: Gray
+    2100000: Gray
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Pillar
+    4300000: Icosphere
   externalObjects: {}
   materials:
     importMaterials: 1
