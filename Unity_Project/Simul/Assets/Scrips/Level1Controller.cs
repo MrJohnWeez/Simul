@@ -28,13 +28,7 @@ public class Level1Controller : LevelControllerBase
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UpdateTriggers();        
     }
 
     public override void UpdateTriggers()
@@ -43,7 +37,7 @@ public class Level1Controller : LevelControllerBase
         // Player 1 section
         
         // If the first plate is active, open the first door.
-        gate_1_1.gameObject.SetActive(plate_1_1.IsTriggered());
+        gate_1_1.gameObject.SetActive(!plate_1_1.IsTriggered());
 
         // Player 2 section
         // If either of the first two pressure plates are active, open the gate
