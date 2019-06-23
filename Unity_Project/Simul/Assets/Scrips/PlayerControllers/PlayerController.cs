@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float inAirGravity = 20f;
 
     public GameObject cameraPlaceholder = null;
-    public float moveSpeed = 7000;
+    public float moveSpeed = 5600;
 
     private Rigidbody rb = null;
     private Vector3 motion;
@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
             Vector3 forwardMotion = moveVertical * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, transform.up).normalized;
             Vector3 rightMotion = moveHorizontal * Vector3.ProjectOnPlane(cameraPlaceholder.transform.right, transform.up).normalized;
             motion = forwardMotion + rightMotion;
+
+            if(motion.magnitude > 1){
+                motion.Normalize();
+            }
 
             // Aligh character in the direction of travel
             if(direction != Vector3.zero) {
