@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: f2304541098b73248b1a49bbbff83a81
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BezierCurve
+    100002: BezierCurve.001
+    100004: BezierCurve.002
+    100006: BezierCurve.003
+    100008: BezierCurve.004
+    100010: //RootNode
+    100012: BezierCircle
+    100014: BezierCurve.005
+    100016: Connected Door 1-2
+    100018: Connected Door 2-2
+    100020: Door 1-2
+    100022: Door 2-2
+    100024: FirstLeft
+    100026: FirstRight
+    100028: Floor
+    100030: FourthLeft
+    100032: FourthRight
+    100034: Pressure Plate 1
+    100036: Pressure Plate 2
+    100038: PressurePlateLeft
+    100040: PressurePlateRight
+    100042: SecondLeft
+    100044: SecondRight
+    100046: ThirdLeft
+    100048: ThirdRight
+    400000: BezierCurve
+    400002: BezierCurve.001
+    400004: BezierCurve.002
+    400006: BezierCurve.003
+    400008: BezierCurve.004
+    400010: //RootNode
+    400012: BezierCircle
+    400014: BezierCurve.005
+    400016: Connected Door 1-2
+    400018: Connected Door 2-2
+    400020: Door 1-2
+    400022: Door 2-2
+    400024: FirstLeft
+    400026: FirstRight
+    400028: Floor
+    400030: FourthLeft
+    400032: FourthRight
+    400034: Pressure Plate 1
+    400036: Pressure Plate 2
+    400038: PressurePlateLeft
+    400040: PressurePlateRight
+    400042: SecondLeft
+    400044: SecondRight
+    400046: ThirdLeft
+    400048: ThirdRight
+    2100000: No Name
+    2100002: Material.001
+    2100004: Default-Material
+    2100006: PressurePlateOff
+    2100008: ConnectedBetweenWorlds Material
+    2100010: Floor2
+    2300000: BezierCurve
+    2300002: BezierCurve.001
+    2300004: BezierCurve.002
+    2300006: BezierCurve.003
+    2300008: BezierCurve.004
+    2300010: BezierCircle
+    2300012: BezierCurve.005
+    2300014: Connected Door 1-2
+    2300016: Connected Door 2-2
+    2300018: Door 1-2
+    2300020: Door 2-2
+    2300022: FirstLeft
+    2300024: FirstRight
+    2300026: Floor
+    2300028: FourthLeft
+    2300030: FourthRight
+    2300032: Pressure Plate 1
+    2300034: Pressure Plate 2
+    2300036: PressurePlateLeft
+    2300038: PressurePlateRight
+    2300040: SecondLeft
+    2300042: SecondRight
+    2300044: ThirdLeft
+    2300046: ThirdRight
+    3300000: BezierCurve
+    3300002: BezierCurve.001
+    3300004: BezierCurve.002
+    3300006: BezierCurve.003
+    3300008: BezierCurve.004
+    3300010: BezierCircle
+    3300012: BezierCurve.005
+    3300014: Connected Door 1-2
+    3300016: Connected Door 2-2
+    3300018: Door 1-2
+    3300020: Door 2-2
+    3300022: FirstLeft
+    3300024: FirstRight
+    3300026: Floor
+    3300028: FourthLeft
+    3300030: FourthRight
+    3300032: Pressure Plate 1
+    3300034: Pressure Plate 2
+    3300036: PressurePlateLeft
+    3300038: PressurePlateRight
+    3300040: SecondLeft
+    3300042: SecondRight
+    3300044: ThirdLeft
+    3300046: ThirdRight
+    4300000: BezierCurve
+    4300002: BezierCurve.001
+    4300004: BezierCurve.002
+    4300006: BezierCurve.003
+    4300008: BezierCurve.004
+    4300010: FirstRight
+    4300012: FirstLeft
+    4300014: SecondLeft
+    4300016: PressurePlateRight
+    4300018: SecondRight
+    4300020: Door 2-2
+    4300022: FourthLeft
+    4300024: Connected Door 1-2
+    4300026: Connected Door 2-2
+    4300028: Door 1-2
+    4300030: FourthRight
+    4300032: Pressure Plate 1
+    4300034: Floor
+    4300036: Pressure Plate 2
+    4300038: ThirdLeft
+    4300040: PressurePlateLeft
+    4300042: ThirdRight
+    4300044: BezierCircle
+    4300046: BezierCurve.005
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

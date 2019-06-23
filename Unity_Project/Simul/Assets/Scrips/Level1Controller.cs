@@ -55,11 +55,11 @@ public class Level1Controller : LevelControllerBase
         // Connected Section
 
         // If player one's right plate is on, open the front connected doors
-        connected_1_1.gameObject.SetActive(!plate_1_right.IsTriggered());
-        connected_2_1.gameObject.SetActive(!plate_1_right.IsTriggered());
+        connected_1_2.gameObject.SetActive(!plate_1_right.IsTriggered());
+        connected_2_2.gameObject.SetActive(!plate_1_right.IsTriggered());
 
-        // If player two's left plate is one, open the back connected doors
-        connected_1_2.gameObject.SetActive(!plate_2_left.IsTriggered());
-        connected_2_2.gameObject.SetActive(!plate_2_left.IsTriggered());
+        // If player two's left plate is on, open the back connected doors
+        connected_1_1.gameObject.SetActive(!plate_2_left.IsTriggered());
+        connected_2_1.gameObject.SetActive(!plate_2_left.IsTriggered());
     }
 }
