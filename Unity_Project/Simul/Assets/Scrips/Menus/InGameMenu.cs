@@ -43,7 +43,7 @@ public class InGameMenu : MonoBehaviour
 
     public void CloseAll()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         SettingsController.IsPaused = false;
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);

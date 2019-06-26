@@ -10,7 +10,7 @@ public class MyNetworkDiscovery : NetworkDiscovery
     public static bool hasRecievedBroadcastAtLeastOnce = false;
         private void Start() {
         networkManager = GameObject.FindObjectOfType<MyNetManager>();
-        debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<Text>();
+        //debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<Text>();
         System.DateTime sysTime = System.DateTime.Now;
         int portValue = sysTime.Hour * 1000 + sysTime.Minute * 10 + sysTime.Millisecond % 100;
         // Debug.Log("portValue: " + portValue.ToString());
@@ -19,7 +19,7 @@ public class MyNetworkDiscovery : NetworkDiscovery
         broadcastData = "RoomNumber: " + portValue;
     }
     public override void OnReceivedBroadcast(string fromAddress, string data) {
-        debugText.text += data + "\n" + "Datat" + "\n";
+        //debugText.text += data + "\n" + "Datat" + "\n";
         
         // deal with Unity bug, see notes above
         if (hasRecievedBroadcastAtLeastOnce) {

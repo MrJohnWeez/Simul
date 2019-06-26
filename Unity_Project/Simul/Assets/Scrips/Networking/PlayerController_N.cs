@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
+#pragma warning disable 0618 // disable network obsolete warning
 
-public class PlayerController : MonoBehaviour
+public class PlayerController_N : NetworkBehaviour
 {
     public bool isActive = true;
 
@@ -13,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public float inAirGravity = 20f;
 
     public GameObject cameraPlaceholder = null;
-    public float moveSpeed = 5600;
+    public float moveSpeed = 7000;
 
     private Rigidbody rb = null;
     private Vector3 motion;
@@ -36,6 +38,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!hasAuthority)
+        {
+            return;
+        }
+
         if(!checkedForControllers && InputHandler.instance != null)
         {
             checkedForControllers = true;
@@ -50,7 +57,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-               // Cursor.visible = false;
+                //Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
         #endif
@@ -77,10 +84,6 @@ public class PlayerController : MonoBehaviour
             Vector3 forwardMotion = moveVertical * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, transform.up).normalized;
             Vector3 rightMotion = moveHorizontal * Vector3.ProjectOnPlane(cameraPlaceholder.transform.right, transform.up).normalized;
             motion = forwardMotion + rightMotion;
-
-            if(motion.magnitude > 1){
-                motion.Normalize();
-            }
 
             // Aligh character in the direction of travel
             if(direction != Vector3.zero) {
@@ -111,6 +114,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (!hasAuthority)
+        {
+            return;
+        }
         if(isActive)
         {
             rb.AddForce(motion * moveSpeed, ForceMode.Force);
@@ -125,6 +132,10 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!hasAuthority)
+        {
+            return;
+        }
         if(isActive)
         { 
             mainCamera.transform.position = cameraPlaceholder.transform.position;

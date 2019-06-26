@@ -23,10 +23,6 @@ public class HighLevelNetworkControl : MonoBehaviour
         networkManager.StartClientButton();
     }
 
-    public void StopSearch()
-    {
-        networkManager.StopSearching();
-    }
 
     public void QuitAllNetworking()
     {

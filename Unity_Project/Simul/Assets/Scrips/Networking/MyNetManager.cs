@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class MyNetManager : NetworkManager
 {
 
-	public MyNetworkDiscovery discovery;
 	public Text debugText;
 	public GameObject ViewRoom = null;
     public GameObject parentRoom = null;
@@ -20,7 +19,6 @@ public class MyNetManager : NetworkManager
 
 	private GameObject playerObject = null;
 	public GameObject joinMenu = null;
-	public GameObject searchingMenu = null;
 	public GameObject InGameHud = null;
 
 	int GetConnectionCount()
@@ -35,21 +33,15 @@ public class MyNetManager : NetworkManager
          }
 	private void Start() {
 		joinMenu.SetActive(true);
-		searchingMenu.SetActive(false);
 		InGameHud.SetActive(false);
 		debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<Text>();
 	}
 
 	public void StartHostButton()
 	{
-		if (Application.platform != RuntimePlatform.WebGLPlayer)
-		{
-			StartHost();
-			debugText.text += "\nOnStartHost";
-			discovery.Initialize();
-			discovery.StartAsServer();
-			joinMenu.SetActive(false);
-		}
+		StartHost();
+		debugText.text += "\nOnStartHost";
+		joinMenu.SetActive(false);
 	}
 
 	public void StopAll()
@@ -58,29 +50,15 @@ public class MyNetManager : NetworkManager
 		{
 			StopHost();
 		}
-		Destroy(discovery.gameObject);
 		Destroy(gameObject);
 	}
 
 	public void StartClientButton()
 	{
-		discovery.Initialize();
-		discovery.StartAsClient();
 		joinMenu.SetActive(false);
 		Debug.Log("Started Client");
-		searchingMenu.SetActive(true);
 	}
 
-	public void StopSearching()
-	{
-		if(discovery.running)
-		{
-			discovery.StopBroadcast();
-		}
-		
-		joinMenu.SetActive(true);
-		searchingMenu.SetActive(false);
-	}
 
 	public override void OnStartHost()
 	{
@@ -95,6 +73,7 @@ public class MyNetManager : NetworkManager
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
+		
 		Debug.Log("Adding Player: " + GetConnectionCount());
 		if(GetConnectionCount() <= 1)
 		{
@@ -115,7 +94,6 @@ public class MyNetManager : NetworkManager
 
 	public void JoinGame(string fromAddress, string data)
 	{
-		searchingMenu.SetActive(false);
 		InGameHud.SetActive(true);
 		networkAddress = fromAddress;
         StartClient();
@@ -133,10 +111,7 @@ public class MyNetManager : NetworkManager
 	{
 		joinMenu.SetActive(true);
 		InGameHud.SetActive(false);
-		searchingMenu.SetActive(false);
 		MyNetworkDiscovery.hasRecievedBroadcastAtLeastOnce = false;
-		discovery.StopBroadcast();
-		//discovery.showGUI = true;
 		debugText.text += "\nOnStopClient";
 	}
 }
