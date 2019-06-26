@@ -13,7 +13,7 @@ public class SceneController: MonoBehaviour
 
     public void Level1Multiplayer()
     {
-        SceneManager.LoadScene("Level1Multiplayer", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level1Networked", LoadSceneMode.Single);
     }
 
     public void MainMenu()

@@ -25,11 +25,6 @@ public class NetworkSetup : MonoBehaviour
         JoinWait.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void UpdateClientRoom(Text inText)
     {
@@ -43,16 +38,31 @@ public class NetworkSetup : MonoBehaviour
     
     public void OpenJoinMenu()
     {
-        HostOrJoinMenu.SetActive(false);
-        HostWait.SetActive(false);
-        JoinWait.SetActive(true);
+        JoinMenu();
     }
     public void AttemptJoin()
     {
-        NetManager.networkAddress = clientIP;
-        NetManager.networkPort =  int.Parse(clientPort);
-        NetManager.isClient = true;
-        NetManager.StartClient();
+        if(NetManager.isClient)
+        {
+            NetManager.StopClient();
+            NetManager.isClient = true;
+        }
+
+        if(clientIP.Length > 0 && clientPort.Length > 0)
+        {
+            NetManager.networkAddress = clientIP;
+            try
+            {
+                NetManager.networkPort = int.Parse(clientPort);
+            }
+            catch
+            {
+                return;
+            }
+            NetManager.isClient = true;
+            NetManager.StartClient();
+        }
+        
     }
 
     public void AttemptHost()
@@ -64,26 +74,54 @@ public class NetworkSetup : MonoBehaviour
             string ipv4 = IPManager.GetIP(ADDRESSFAM.IPv4);
             hostedRoom = ipv4 + ":" + NetManager.networkPort;
             hostedRoomText.text = hostedRoom;
-            HostOrJoinMenu.SetActive(false);
-            HostWait.SetActive(true);
-            JoinWait.SetActive(false);
+            HostWaitMenu();
         }
+    }
+
+    public void HostWaitMenu()
+    {
+        HostOrJoinMenu.SetActive(false);
+        HostWait.SetActive(true);
+        JoinWait.SetActive(false);
+    }
+
+    public void HostJoinMenu()
+    {
+        HostOrJoinMenu.SetActive(true);
+        HostWait.SetActive(false);
+        JoinWait.SetActive(false);
+    }
+
+    public void JoinMenu()
+    {
+        HostOrJoinMenu.SetActive(false);
+        HostWait.SetActive(false);
+        JoinWait.SetActive(true);
     }
 
     public void CancelHost()
     {
         NetManager.StopHost();
-        HostOrJoinMenu.SetActive(true);
-        HostWait.SetActive(false);
-        JoinWait.SetActive(false);
+        HostJoinMenu();
     }
 
     public void CancelJoin()
     {
-        HostOrJoinMenu.SetActive(true);
-        HostWait.SetActive(false);
-        JoinWait.SetActive(false);
+        NetManager.StopClient();
+        HostJoinMenu();
         NetManager.isClient = false;
+    }
+
+    public void CloseNetwork()
+    {
+        if(NetManager.isClient)
+        {
+            CancelJoin();
+        }
+        else
+        {
+            CancelHost();
+        }
     }
 
     public void GameStarted()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+#pragma warning disable 0618 // disable network obsolete warning
 public class MyNetworkDiscovery : NetworkDiscovery
 {
     public MyNetManager networkManager;

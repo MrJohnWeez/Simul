@@ -46,6 +46,20 @@ public class NetworkedManager : NetworkManager
         }
 	}
 
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        networkSetup.OpenJoinMenu();
+    }
+
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        networkSetup.HostWaitMenu();
+    }
+
+    public override void OnStopServer()
+    {
+        Debug.Log("SERVER WAS STOPPED!");
+    }
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
 		Debug.Log("Adding Player: " + GetConnectionCount());
@@ -55,7 +69,7 @@ public class NetworkedManager : NetworkManager
 			playerObject.transform.parent = player1World.transform;
         	NetworkServer.AddPlayerForConnection(conn, playerObject, playerControllerId);
 		}
-		else
+		else if(GetConnectionCount() >= 1 && GetConnectionCount() <= 2)
 		{
 			playerObject = (GameObject)Instantiate(playerObjectPrefab, player2Spawn.transform.position, player2Spawn.transform.rotation);
 			playerObject.transform.parent = player2World.transform;
