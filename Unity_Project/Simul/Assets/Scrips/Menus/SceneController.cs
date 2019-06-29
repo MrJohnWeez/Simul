@@ -11,14 +11,9 @@ public class SceneController: MonoBehaviour
         SceneManager.LoadScene("Level1SinglePlayer", LoadSceneMode.Single);
     }
 
-    public void ConnectionLostMenu()
+    public void TutorialLevel()
     {
-       SceneManager.LoadScene("ConnectionLost", LoadSceneMode.Single); 
-    }
-
-    public void Level1Multiplayer()
-    {
-        SceneManager.LoadScene("Level1Networked", LoadSceneMode.Single);
+        SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
     }
 
     public void MainMenu()

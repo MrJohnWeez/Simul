@@ -74,13 +74,9 @@ public class PlayerController : MonoBehaviour
             }
             
             // Move the character realitive to the camera 
-            Vector3 forwardMotion = moveVertical * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, transform.up).normalized;
-            Vector3 rightMotion = moveHorizontal * Vector3.ProjectOnPlane(cameraPlaceholder.transform.right, transform.up).normalized;
+            Vector3 forwardMotion = direction.z * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, transform.up).normalized;
+            Vector3 rightMotion = direction.x * Vector3.ProjectOnPlane(cameraPlaceholder.transform.right, transform.up).normalized;
             motion = forwardMotion + rightMotion;
-
-            if(motion.magnitude > 1){
-                motion.Normalize();
-            }
 
             // Aligh character in the direction of travel
             if(direction != Vector3.zero) {

@@ -14,11 +14,10 @@ public class PlayerSwitcher : MonoBehaviour
 
     private bool isFirstPlayer = true;
 
-    void Start()
+    void Awake()
     {
         firstPC = firstPlayer.GetComponent<PlayerController>();
         secondPC = secondPlayer.GetComponent<PlayerController>();
-        UpdateActive(true);
     }
 
     void Update()
@@ -45,9 +44,15 @@ public class PlayerSwitcher : MonoBehaviour
     }
 
     /// <summary> Control what player user can control </summary>
-    private void UpdateActive(bool firstIsActive)
+    public void UpdateActive(bool firstIsActive)
     {
         firstPC.isActive = firstIsActive;
         secondPC.isActive = !firstIsActive;
+    }
+
+    public void DisableAllPlayers()
+    {
+        firstPC.isActive = false;
+        secondPC.isActive = false;
     }
 }

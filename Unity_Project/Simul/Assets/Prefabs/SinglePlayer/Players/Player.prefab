@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2410692847305513217}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,8 +55,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2410692847917622571}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2.78, z: -3.43}
+  m_LocalRotation: {x: 0.33396813, y: -0.0148052275, z: 0.0052463855, w: 0.9424535}
+  m_LocalPosition: {x: 0.10774851, y: 2.783, z: -3.4282875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2410692847305513217}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 8562584156915266224}
   m_Layer: 9
   m_Name: PlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,14 +124,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb5bce8a18429246a7fa018ab4faf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
   layersToJumpOn:
     serializedVersion: 2
     m_Bits: 3383
   jumpHeight: 1000
   inAirGravity: 50
   cameraPlaceholder: {fileID: 2410692847917622571}
-  moveSpeed: 7000
+  moveSpeed: 5600
   cameraRotateSpeed: 2
   cameraOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8562584157779230139
