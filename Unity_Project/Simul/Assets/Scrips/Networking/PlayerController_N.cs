@@ -14,7 +14,7 @@ public class PlayerController_N : NetworkBehaviour
     public float jumpHeight = 1000;
     public float inAirGravity = 20f;
 
-    public GameObject cameraPlaceholder = null;
+    private GameObject cameraPlaceholder = null;
     public float moveSpeed = 7000;
 
     private Rigidbody rb = null;
@@ -24,17 +24,22 @@ public class PlayerController_N : NetworkBehaviour
     // Camera control variables
     private GameObject mainCamera = null;
     public float cameraRotateSpeed = 2;
-    public Vector3 cameraOffset; 
+    private Vector3 cameraOffset = new Vector3(0,2.78f,-3.43f); 
     float currentCameraRotation;
     private ControllerType controllerType = ControllerType.None;
     private bool checkedForControllers = false;
+    private GameObject rbGO = null;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInChildren<Rigidbody>();
+        rbGO = rb.gameObject;
         mainCamera = Camera.main.gameObject;
-        cameraOffset = cameraPlaceholder.transform.position - transform.position;
+        cameraPlaceholder = new GameObject("CameraPlaceholder");
+        cameraPlaceholder.transform.position = cameraOffset + rbGO.transform.position;
+        cameraPlaceholder.transform.eulerAngles = new Vector3(0,-90,0);
     }
+
 
     private void Update()
     {
@@ -81,19 +86,19 @@ public class PlayerController_N : NetworkBehaviour
             }
             
             // Move the character realitive to the camera 
-            Vector3 forwardMotion = moveVertical * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, transform.up).normalized;
-            Vector3 rightMotion = moveHorizontal * Vector3.ProjectOnPlane(cameraPlaceholder.transform.right, transform.up).normalized;
+            Vector3 forwardMotion = moveVertical * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, rbGO.transform.up).normalized;
+            Vector3 rightMotion = moveHorizontal * Vector3.ProjectOnPlane(cameraPlaceholder.transform.right, rbGO.transform.up).normalized;
             motion = forwardMotion + rightMotion;
 
             // Aligh character in the direction of travel
             if(direction != Vector3.zero) {
-                transform.LookAt(transform.position + motion, transform.up);
+                rbGO.transform.LookAt(rbGO.transform.position + motion, rbGO.transform.up);
             }
         }
         
 
         RaycastHit hit;
-        isGrounded = Physics.Raycast(transform.position + new Vector3(0,0.1f,0), -transform.up, out hit, 0.2f, layersToJumpOn);
+        isGrounded = Physics.Raycast(rbGO.transform.position + new Vector3(0,0.1f,0), -rbGO.transform.up, out hit, 0.2f, layersToJumpOn);
 
 
         if(isActive)
@@ -107,9 +112,9 @@ public class PlayerController_N : NetworkBehaviour
 
             currentCameraRotation += horizontal * cameraRotateSpeed;
 
-            cameraPlaceholder.transform.position = transform.position + cameraOffset;
-            cameraPlaceholder.transform.LookAt(transform);
-            cameraPlaceholder.transform.RotateAround(transform.position, transform.up, currentCameraRotation);
+            cameraPlaceholder.transform.position = rbGO.transform.position + cameraOffset;
+            cameraPlaceholder.transform.LookAt(rbGO.transform);
+            cameraPlaceholder.transform.RotateAround(rbGO.transform.position, rbGO.transform.up, currentCameraRotation);
         }
     }
 

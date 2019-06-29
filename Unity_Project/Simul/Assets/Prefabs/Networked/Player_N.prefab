@@ -194,7 +194,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3035233175209596724}
   - component: {fileID: 3035233175209596723}
-  - component: {fileID: 451814502137839213}
   - component: {fileID: 1853525115727172560}
   - component: {fileID: 7803587247329432063}
   m_Layer: 9
@@ -235,28 +234,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &451814502137839213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3035233175209596725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 756ea4a531ffc5345ac1fe690ba8a048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 1
-  layersToJumpOn:
-    serializedVersion: 2
-    m_Bits: 0
-  jumpHeight: 1000
-  inAirGravity: 50
-  cameraPlaceholder: {fileID: 9061164170803626153}
-  moveSpeed: 7000
-  cameraRotateSpeed: 2
-  cameraOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &1853525115727172560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +266,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &7803587247329432063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9061164170207263875}
   - component: {fileID: 479694482499825204}
+  - component: {fileID: 8765361475671897856}
   m_Layer: 0
   m_Name: Player_N
   m_TagString: Untagged
@@ -378,6 +356,28 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &8765361475671897856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061164170207263874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756ea4a531ffc5345ac1fe690ba8a048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
+  layersToJumpOn:
+    serializedVersion: 2
+    m_Bits: 0
+  jumpHeight: 1000
+  inAirGravity: 50
+  cameraPlaceholder: {fileID: 9061164170803626153}
+  moveSpeed: 7000
+  cameraRotateSpeed: 2
+  cameraOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &9061164170803626153
 GameObject:
   m_ObjectHideFlags: 0

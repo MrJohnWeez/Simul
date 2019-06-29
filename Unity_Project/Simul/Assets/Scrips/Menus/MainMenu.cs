@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+#pragma warning disable 0618 // disable network obsolete warning
 
 /// <summary> Handles what menus appear and which ones are toggled off </summary>
 public class MainMenu : MonoBehaviour
@@ -11,6 +14,12 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         CloseAll();
+        GameObject networked = GameObject.Find("MyNetworkManager");
+        if(networked)
+        {
+            NetworkManager.Shutdown();
+            Destroy(networked);
+        }
     }
 
     public void OpenHowToPlay()

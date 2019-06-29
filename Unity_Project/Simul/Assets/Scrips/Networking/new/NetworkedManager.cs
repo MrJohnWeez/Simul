@@ -12,6 +12,7 @@ public class NetworkedManager : NetworkManager
 	public GameObject player1Spawn;
 	public GameObject player2Spawn;
     public NetworkSetup networkSetup;
+    public SceneController sceneController = null;
 
     private GameObject playerObject = null;
     public bool isClient = false;
@@ -41,19 +42,23 @@ public class NetworkedManager : NetworkManager
         Debug.Log("conn: " + conn);
         if(GetConnectionCount() == 2 || isClient)
         {
-            Debug.Log("Go to game now!");
             networkSetup.GameStarted();
         }
 	}
 
     public override void OnClientDisconnect(NetworkConnection conn)
     {
-        networkSetup.OpenJoinMenu();
+        Debug.Log("Disconnected OnClientDisconnect");
+        networkSetup.JoinMenu();
+        //sceneController.ConnectionLostMenu();
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        Debug.Log("Disconnected OnServerDisconnect");
+        NetworkServer.DestroyPlayersForConnection(conn);
         networkSetup.HostWaitMenu();
+        //sceneController.ConnectionLostMenu();
     }
 
     public override void OnStopServer()
@@ -74,10 +79,10 @@ public class NetworkedManager : NetworkManager
 			playerObject = (GameObject)Instantiate(playerObjectPrefab, player2Spawn.transform.position, player2Spawn.transform.rotation);
 			playerObject.transform.parent = player2World.transform;
         	NetworkServer.AddPlayerForConnection(conn, playerObject, playerControllerId);
+            
 		}
         if(GetConnectionCount() == 2)
         {
-            Debug.Log("Go to game now!");
             networkSetup.GameStarted();
         }
     }

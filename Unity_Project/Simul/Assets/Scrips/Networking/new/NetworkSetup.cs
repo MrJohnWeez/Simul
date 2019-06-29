@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 #pragma warning disable 0618 // disable network obsolete warning
 
 public class NetworkSetup : MonoBehaviour
@@ -12,6 +13,7 @@ public class NetworkSetup : MonoBehaviour
     public GameObject JoinWait = null;
     public NetworkedManager NetManager = null;
     public Text hostedRoomText = null;
+    public Text clientRoomText = null;
     private string hostedRoom = "";
     private string clientIP = "";
     private string clientPort = "";
@@ -23,12 +25,13 @@ public class NetworkSetup : MonoBehaviour
         HostOrJoinMenu.SetActive(true);
         HostWait.SetActive(false);
         JoinWait.SetActive(false);
+        UpdateClientRoom();
     }
 
 
-    public void UpdateClientRoom(Text inText)
+    public void UpdateClientRoom()
     {
-        string[] ipAndPort = inText.text.Split(':');
+        string[] ipAndPort = clientRoomText.text.Split(':');
         if(ipAndPort.Length == 2)
         {
             clientIP = ipAndPort[0];
@@ -122,6 +125,11 @@ public class NetworkSetup : MonoBehaviour
         {
             CancelHost();
         }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public void GameStarted()

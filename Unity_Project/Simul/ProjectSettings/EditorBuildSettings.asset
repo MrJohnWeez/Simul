@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Levels/Multiplayer/Level1Networked.unity
     guid: dafe1c38c55e1d5428d618c013611664
+  - enabled: 1
+    path: Assets/Scenes/Menus/ConnectionLost.unity
+    guid: 34ba6f46966ab074583b5f5c34743d71
   m_configObjects: {}
