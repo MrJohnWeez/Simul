@@ -58,12 +58,12 @@ public class PlayerController_N : NetworkBehaviour
             if(SettingsController.IsPaused)
             {
                 //Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
+                //Cursor.lockState = CursorLockMode.Confined;
             }
             else
             {
                 //Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
         #endif
 
