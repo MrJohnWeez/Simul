@@ -29,10 +29,7 @@ public class PlayerSwitcher : MonoBehaviour
                 TogglePlayer();
             }
 
-            if(InputHandler.instance.GetButtonDown("UpButton"))
-            {
-                sceneController.Level1SinglePlayer();
-            }
+            
         }
     }
 

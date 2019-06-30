@@ -35,6 +35,12 @@ public class TutorialScript : MonoBehaviour
         }
     }
 
+    private void Update() {
+        if(InputHandler.instance.GetButtonDown("UpButton"))
+        {
+            sceneController.TutorialLevel();
+        }
+    }
     public void FinishedTutorial()
     {
         sceneController.Level1SinglePlayer();
