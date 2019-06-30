@@ -461,9 +461,4 @@ public class DemoAnimationScript : MonoBehaviour {
 		anim.SetBool ("HoldShoot", true);
 	}
 
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

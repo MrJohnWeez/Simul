@@ -6,11 +6,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public bool isActive = true;
+    public Animator anim;
 
     // Player jump vars
     public LayerMask layersToJumpOn;
     public float jumpHeight = 1000;
     public float inAirGravity = 20f;
+    
 
     public GameObject cameraPlaceholder = null;
     public float moveSpeed = 5600;
@@ -72,6 +74,8 @@ public class PlayerController : MonoBehaviour
             if(direction.magnitude > 1) {
                 direction = direction.normalized;
             }
+
+            anim.SetFloat ("MoveAmount", direction.magnitude);
             
             // Move the character realitive to the camera 
             Vector3 forwardMotion = direction.z * Vector3.ProjectOnPlane(cameraPlaceholder.transform.forward, transform.up).normalized;
