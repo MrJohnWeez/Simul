@@ -9,6 +9,7 @@ public class TutorialScript : MonoBehaviour
     public PlayerSwitcher playerSwitcher = null;
     public GameObject RopeBreakInstructions = null;
     public GameObject ChallengeInstructions = null;
+    public GameObject HowToMoveInstructions = null;
     public Transform RokeBreakCam = null;
     public Transform RokeBreakCam2 = null;
     public Transform OverviewMapCam = null;
@@ -40,8 +41,8 @@ public class TutorialScript : MonoBehaviour
     }
     public void RopeBreakCutscene()
     {
+        DismissMenus();
         RopeBreakInstructions.SetActive(true);
-        ChallengeInstructions.SetActive(false);
         mainCam.transform.position = RokeBreakCam.position;
         mainCam.transform.rotation = RokeBreakCam.rotation;
         currentCoroutine = StartCoroutine(MoveToRope());
@@ -55,7 +56,7 @@ public class TutorialScript : MonoBehaviour
             StopCoroutine(currentCoroutine);
             currentCoroutine = null;
         }
-        RopeBreakInstructions.SetActive(false);
+        DismissMenus();
         ChallengeInstructions.SetActive(true);
         currentCoroutine = StartCoroutine(MoveToOverview());
     }
@@ -100,9 +101,19 @@ public class TutorialScript : MonoBehaviour
             timer += Time.deltaTime/2;
             yield return 0;
         }
-        playerSwitcher.UpdateActive(true);
+        HowToMoveInstructions.SetActive(true);
     }
 
+    public void DismissMenus(bool SetPlayerActive = false)
+    {
+        if(SetPlayerActive)
+        {
+            playerSwitcher.UpdateActive(true);
+        }
+        RopeBreakInstructions.SetActive(false);
+        ChallengeInstructions.SetActive(false);
+        HowToMoveInstructions.SetActive(false);
+    }
     public void StartGame()
     {
         if(currentCoroutine != null)
@@ -110,8 +121,7 @@ public class TutorialScript : MonoBehaviour
             StopCoroutine(currentCoroutine);
             currentCoroutine = null;
         }
-        RopeBreakInstructions.SetActive(false);
-        ChallengeInstructions.SetActive(false);
+        DismissMenus();
         StartCoroutine(MoveToPlayer());
     }
 }
