@@ -8,6 +8,7 @@ public class PressureToggle : MonoBehaviour
     public Material triggeredMat = null;
     public Material nonTriggeredMat = null;
     public PressureGate[] TriggedObjects = null;
+    public PressureGate[] TriggedObjectsOn = null;
     private bool isTriggered = false;
     private bool preIsTriggered = false;
     private MeshRenderer render = null;
@@ -49,6 +50,10 @@ public class PressureToggle : MonoBehaviour
             {
                 pg.DisableGate();
             }
+            foreach (PressureGate pg in TriggedObjectsOn)
+            {
+                pg.EnableGate();
+            }
         }
     }
 
@@ -59,6 +64,10 @@ public class PressureToggle : MonoBehaviour
             foreach (PressureGate pg in TriggedObjects)
             {
                 pg.EnableGate();
+            }
+            foreach (PressureGate pg in TriggedObjectsOn)
+            {
+                pg.DisableGate();
             }
         }
     }
