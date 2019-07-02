@@ -8,8 +8,8 @@ using UnityEngine.UI;
 /// <summary> Handles what menus appear and which ones are toggled off </summary>
 public class MainMenu : MonoBehaviour
 {
-    public GameObject howToPlayMenu = null;
     public GameObject aboutMenu = null;
+    public GameObject controlsMenu = null;
 
     private void Start()
     {
@@ -22,12 +22,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void OpenHowToPlay()
-    {
-        CloseAll();
-        ToggleHowToPlayMenu(true);
-    }
-
     public void OpenAboutMenu()
     {
         CloseAll();
@@ -37,13 +31,8 @@ public class MainMenu : MonoBehaviour
     /// <summary> Close all menus on main menu screen </summary>
     public void CloseAll()
     {
-        ToggleHowToPlayMenu(false);
-        ToggleAboutMenu(false);
-    }
-
-    private void ToggleHowToPlayMenu(bool activeState)
-    {
-        howToPlayMenu.SetActive(activeState);
+        aboutMenu.SetActive(false);
+        controlsMenu.SetActive(false);
     }
 
     private void ToggleAboutMenu(bool activeState)
