@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour
             if(SettingsController.IsPaused)
             {
                 //Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
+                //Cursor.lockState = CursorLockMode.Confined;
             }
             else
             {
                // Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
         #endif
 
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
             float moveHorizontal = 0;
             float moveVertical = 0;
 
-            if(!SettingsController.IsPaused)
+            if(SettingsController.UserInput)
             {
                 moveHorizontal = InputHandler.instance.GetAxisRaw("Horizontal");
                 moveVertical = InputHandler.instance.GetAxisRaw("Vertical");
@@ -93,21 +93,22 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position + new Vector3(0,0.1f,0), -transform.up, out hit, 0.2f, layersToJumpOn);
 
 
-        if(isActive)
+        if(isActive && SettingsController.UserInput)
         {
             float horizontal = 0;
-
-            if(!SettingsController.IsPaused)
-            {
-                horizontal = InputHandler.instance.GetAxis("LookX") * cameraRotateSpeed;
-            }
-
+            horizontal = InputHandler.instance.GetAxis("LookX") * cameraRotateSpeed;
             currentCameraRotation += horizontal * cameraRotateSpeed;
 
             cameraPlaceholder.transform.position = transform.position + cameraOffset;
             cameraPlaceholder.transform.LookAt(transform);
             cameraPlaceholder.transform.RotateAround(transform.position, transform.up, currentCameraRotation);
         }
+    }
+
+    public void Disable()
+    {
+        isActive = false;
+        anim.SetFloat ("MoveAmount", 0);  
     }
 
     private void FixedUpdate() {
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
             if(!isGrounded)
                 rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
     
-            if(isGrounded && InputHandler.instance.GetButtonDown("DownButton") && !SettingsController.IsPaused)
+            if(isGrounded && InputHandler.instance.GetButtonDown("DownButton") && SettingsController.UserInput)
                 rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
             
         }
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
-        if(isActive)
+        if(isActive && SettingsController.UserInput)
         { 
             mainCamera.transform.position = cameraPlaceholder.transform.position;
             mainCamera.transform.rotation = cameraPlaceholder.transform.rotation;

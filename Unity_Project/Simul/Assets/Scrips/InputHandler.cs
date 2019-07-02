@@ -11,6 +11,7 @@ public enum ControllerType
 
 public class InputHandler: MonoBehaviour
 {
+    public static bool ForceZero = false;
     public Joystick leftTouchMovement = null;
     public Joystick rightTouchMovement = null;
     
@@ -41,6 +42,9 @@ public class InputHandler: MonoBehaviour
 
     public float GetAxisRaw(string axis)
     {
+        if(ForceZero)
+            return 0;
+
         Vector2 touchMovementRaw = new Vector2(touchMovement.Horizontal, touchMovement.Vertical);
 
         if(touchMovement && axis == "Horizontal" && touchMovementRaw.x != 0)
@@ -78,6 +82,8 @@ public class InputHandler: MonoBehaviour
 
     public float GetAxis(string axis)
     {
+        if(ForceZero)
+            return 0;
         float returnThis = 0;
         if(axis == "LookX")
         {
@@ -108,6 +114,8 @@ public class InputHandler: MonoBehaviour
 
     public bool GetButtonDown(string buttonValue)
     {
+        if(ForceZero)
+            return false;
         bool returnThis = false;
         if(buttonValue == "DownButton")
         {

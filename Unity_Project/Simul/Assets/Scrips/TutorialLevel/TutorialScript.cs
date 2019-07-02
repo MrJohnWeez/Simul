@@ -10,9 +10,15 @@ public class TutorialScript : MonoBehaviour
     public GameObject RopeBreakInstructions = null;
     public GameObject ChallengeInstructions = null;
     public GameObject HowToMoveInstructions = null;
+    public GameObject LogInstuctions = null;
+    public GameObject SwitchPlayersInstructions = null;
+    public GameObject EndTutorial = null;
     public Transform RokeBreakCam = null;
     public Transform RokeBreakCam2 = null;
     public Transform OverviewMapCam = null;
+    public Transform LogCam = null;
+    public Transform SwitchPlayerCam = null;
+    public Transform EndTutorialCam = null;
     public Transform PlayerCamera = null;
     private GameObject mainCam = null;
     private Coroutine currentCoroutine = null;
@@ -36,7 +42,7 @@ public class TutorialScript : MonoBehaviour
     }
 
     private void Update() {
-        if(InputHandler.instance.GetButtonDown("UpButton"))
+        if(SettingsController.UserInput && InputHandler.instance.GetButtonDown("UpButton"))
         {
             sceneController.TutorialLevel();
         }
@@ -48,6 +54,7 @@ public class TutorialScript : MonoBehaviour
     public void RopeBreakCutscene()
     {
         DismissMenus();
+        SettingsController.UserInput = false;
         RopeBreakInstructions.SetActive(true);
         mainCam.transform.position = RokeBreakCam.position;
         mainCam.transform.rotation = RokeBreakCam.rotation;
@@ -63,12 +70,44 @@ public class TutorialScript : MonoBehaviour
             currentCoroutine = null;
         }
         DismissMenus();
+        SettingsController.UserInput = false;
         ChallengeInstructions.SetActive(true);
         currentCoroutine = StartCoroutine(MoveToOverview());
     }
 
+    public void LogCutscene()
+    {
+        DismissMenus();
+        SettingsController.UserInput = false;
+        playerSwitcher.DisableAllPlayers();
+        LogInstuctions.SetActive(true);
+        mainCam.transform.position = LogCam.position;
+        mainCam.transform.rotation = LogCam.rotation;
+    }
+
+    public void SwitchPlayerCutscene()
+    {
+        DismissMenus();
+        SettingsController.UserInput = false;
+        playerSwitcher.DisableAllPlayers();
+        SwitchPlayersInstructions.SetActive(true);
+        mainCam.transform.position = SwitchPlayerCam.position;
+        mainCam.transform.rotation = SwitchPlayerCam.rotation;
+    }
+
+    public void EndTutorialCutscene()
+    {
+        DismissMenus();
+        SettingsController.UserInput = false;
+        playerSwitcher.DisableAllPlayers();
+        EndTutorial.SetActive(true);
+        mainCam.transform.position = EndTutorialCam.position;
+        mainCam.transform.rotation = EndTutorialCam.rotation;
+    }
+
     IEnumerator MoveToRope()
     {
+        SettingsController.UserInput = false;
         Quaternion orgRot = mainCam.transform.rotation;
         Vector3 orgPos = mainCam.transform.position;
         float timer = 0.0f;
@@ -83,6 +122,7 @@ public class TutorialScript : MonoBehaviour
 
     IEnumerator MoveToOverview()
     {
+        SettingsController.UserInput = false;
         Quaternion orgRot = mainCam.transform.rotation;
         Vector3 orgPos = mainCam.transform.position;
         float timer = 0.0f;
@@ -97,6 +137,7 @@ public class TutorialScript : MonoBehaviour
 
     IEnumerator MoveToPlayer()
     {
+        SettingsController.UserInput = false;
         Quaternion orgRot = mainCam.transform.rotation;
         Vector3 orgPos = mainCam.transform.position;
         float timer = 0.0f;
@@ -119,7 +160,12 @@ public class TutorialScript : MonoBehaviour
         RopeBreakInstructions.SetActive(false);
         ChallengeInstructions.SetActive(false);
         HowToMoveInstructions.SetActive(false);
+        LogInstuctions.SetActive(false);
+        SwitchPlayersInstructions.SetActive(false);
+        EndTutorial.SetActive(false);
+        SettingsController.UserInput = true;
     }
+
     public void StartGame()
     {
         if(currentCoroutine != null)

@@ -22,14 +22,10 @@ public class PlayerSwitcher : MonoBehaviour
 
     void Update()
     {
-        if(!SettingsController.IsPaused)
+        if(SettingsController.UserInput && InputHandler.instance.GetButtonDown("LeftButton"))
         {
-            if(InputHandler.instance.GetButtonDown("LeftButton"))
-            {
-                TogglePlayer();
-            }
-
             
+            TogglePlayer();
         }
     }
 
@@ -49,7 +45,7 @@ public class PlayerSwitcher : MonoBehaviour
 
     public void DisableAllPlayers()
     {
-        firstPC.isActive = false;
-        secondPC.isActive = false;
+        firstPC.Disable();
+        secondPC.Disable();
     }
 }

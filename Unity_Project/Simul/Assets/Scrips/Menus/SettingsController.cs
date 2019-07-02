@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class SettingsController : MonoBehaviour
 {
     public static bool IsPaused = false;
+    public static bool UserInput = true;
     public InputHandler inputHandler;
     public Color selectedButtonColor;
     public Color unselectedColor;

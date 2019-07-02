@@ -10,7 +10,7 @@ public class InGameMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CloseAll();
+        CloseAll(false);
     }
 
     private void Update() {
@@ -20,7 +20,7 @@ public class InGameMenu : MonoBehaviour
             {
                 CloseAll();
             }
-            else
+            else if(SettingsController.UserInput)
             {
                 OpenPauseMenu();
             }
@@ -29,6 +29,7 @@ public class InGameMenu : MonoBehaviour
     
     public void OpenPauseMenu()
     {
+        SettingsController.UserInput = false;
         SettingsController.IsPaused = true;
         pauseMenu.SetActive(true);
         settingsMenu.SetActive(false);
@@ -36,14 +37,19 @@ public class InGameMenu : MonoBehaviour
 
     public void OpenSettingsMenu()
     {
+        SettingsController.UserInput = false;
         SettingsController.IsPaused = true;
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
-    public void CloseAll()
+    public void CloseAll(bool overrideSettings = true)
     {
         //Cursor.visible = false;
+        if(overrideSettings)
+        {
+            SettingsController.UserInput = true;
+        }
         SettingsController.IsPaused = false;
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
