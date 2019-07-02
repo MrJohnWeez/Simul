@@ -6,6 +6,7 @@ public class InGameMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject settingsMenu;
+    public GameObject ControlsMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +28,21 @@ public class InGameMenu : MonoBehaviour
         }
     }
     
+    public void OpenControlsMenu()
+    {
+        SettingsController.UserInput = false;
+        SettingsController.IsPaused = true;
+        ControlsMenu.SetActive(true);
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+
+    }
     public void OpenPauseMenu()
     {
         SettingsController.UserInput = false;
         SettingsController.IsPaused = true;
         pauseMenu.SetActive(true);
+        ControlsMenu.SetActive(false);
         settingsMenu.SetActive(false);
     }
 
@@ -40,6 +51,7 @@ public class InGameMenu : MonoBehaviour
         SettingsController.UserInput = false;
         SettingsController.IsPaused = true;
         pauseMenu.SetActive(false);
+        ControlsMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
 
@@ -51,6 +63,7 @@ public class InGameMenu : MonoBehaviour
             SettingsController.UserInput = true;
         }
         SettingsController.IsPaused = false;
+        ControlsMenu.SetActive(false);
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
     }

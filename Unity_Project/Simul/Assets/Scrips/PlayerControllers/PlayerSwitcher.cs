@@ -30,7 +30,7 @@ public class PlayerSwitcher : MonoBehaviour
     }
 
     /// <summary> Toggles what player the user controls </summary>
-    private void TogglePlayer()
+    public void TogglePlayer()
     {
         isFirstPlayer = !isFirstPlayer;
         UpdateActive(isFirstPlayer);

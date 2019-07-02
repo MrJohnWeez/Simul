@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class TutorialScript : MonoBehaviour
 {
+    [System.NonSerialized]
     public bool Player1Finished = false;
+    [System.NonSerialized]
     public bool Player2Finished = false;
     public PlayerSwitcher playerSwitcher = null;
     public GameObject RopeBreakInstructions = null;
     public GameObject ChallengeInstructions = null;
-    public GameObject HowToMoveInstructions = null;
     public GameObject LogInstuctions = null;
     public GameObject SwitchPlayersInstructions = null;
     public GameObject EndTutorial = null;
@@ -23,6 +24,7 @@ public class TutorialScript : MonoBehaviour
     private GameObject mainCam = null;
     private Coroutine currentCoroutine = null;
     public SceneController sceneController = null;
+    public InGameMenu inGameMenu = null;
     private bool finishedLevel = false;
 
     void Start()
@@ -44,8 +46,12 @@ public class TutorialScript : MonoBehaviour
     private void Update() {
         if(SettingsController.UserInput && InputHandler.instance.GetButtonDown("UpButton"))
         {
-            sceneController.TutorialLevel();
+            RestartLevel();
         }
+    }
+    public void RestartLevel()
+    {
+        sceneController.TutorialLevel();
     }
     public void FinishedTutorial()
     {
@@ -148,7 +154,8 @@ public class TutorialScript : MonoBehaviour
             timer += Time.deltaTime/2;
             yield return 0;
         }
-        HowToMoveInstructions.SetActive(true);
+        DismissMenus(true);
+        inGameMenu.OpenControlsMenu();
     }
 
     public void DismissMenus(bool SetPlayerActive = false)
@@ -159,7 +166,6 @@ public class TutorialScript : MonoBehaviour
         }
         RopeBreakInstructions.SetActive(false);
         ChallengeInstructions.SetActive(false);
-        HowToMoveInstructions.SetActive(false);
         LogInstuctions.SetActive(false);
         SwitchPlayersInstructions.SetActive(false);
         EndTutorial.SetActive(false);
