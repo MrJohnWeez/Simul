@@ -9,13 +9,10 @@ public class SelectFirst : MonoBehaviour
     private Button thisButton = null;
 
     private void OnEnable() {
-        MakeSelected();
-    }
-    private void Start() {
-        MakeSelected();
+        MakeSelected(true);
     }
 
-    public void MakeSelected()
+    public void MakeSelected(bool forceSelect = false)
     {
         if(!thisButton)
         {
@@ -25,11 +22,16 @@ public class SelectFirst : MonoBehaviour
         {
             m_EventSystem = EventSystem.current;
         }
-        thisButton.Select();
-        thisButton.OnSelect(null);
+        if(m_EventSystem.currentSelectedGameObject == null || forceSelect)
+        {
+            Debug.Log("Selected Again");
+            thisButton.Select();
+            thisButton.OnSelect(null);
+        }
     }
 
     private void Update() {
+        MakeSelected();
         //Debug.Log("Selected: " + m_EventSystem.currentSelectedGameObject);
     }
 }

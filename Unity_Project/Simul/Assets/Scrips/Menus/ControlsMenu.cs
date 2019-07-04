@@ -4,16 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ControlsMenu : MonoBehaviour
 {
-    public GameObject Keyboard = null;
-    public GameObject Android = null;
-    public GameObject Xbox = null;
-    public GameObject PS4 = null;
-    public Color DefaultButtonColor;
-    public Color SelectedButtonColor;
-    public Image KeyboardIg = null;
-    public Image AndroidIg = null;
-    public Image XboxIg = null;
-    public Image PS4Ig = null;
+    public GameObject KeyboardMenu = null;
+    public GameObject AndroidMenu = null;
+    public GameObject XboxMenu = null;
+    public GameObject PS4Menu = null;
 
     private void Start() {
         #if Android
@@ -27,40 +21,32 @@ public class ControlsMenu : MonoBehaviour
     public void ShowKeyboard()
     {
         CloseAll();
-        Keyboard.SetActive(true);
-        KeyboardIg.color = SelectedButtonColor;
+        KeyboardMenu.SetActive(true);
     }
 
     public void ShowAndroid()
     {
         CloseAll();
-        Android.SetActive(true);
-        AndroidIg.color = SelectedButtonColor;
+        AndroidMenu.SetActive(true);
     }
 
     public void ShowXbox()
     {
         CloseAll();
-        Xbox.SetActive(true);
-        XboxIg.color = SelectedButtonColor;
+        XboxMenu.SetActive(true);
     }
 
     public void ShowPS4()
     {
         CloseAll();
-        PS4.SetActive(true);
-        PS4Ig.color = SelectedButtonColor;
+        PS4Menu.SetActive(true);
     }
 
     public void CloseAll()
     {
-        Keyboard.SetActive(false);
-        Android.SetActive(false);
-        Xbox.SetActive(false);
-        PS4.SetActive(false);
-        KeyboardIg.color = DefaultButtonColor;
-        AndroidIg.color = DefaultButtonColor;
-        XboxIg.color = DefaultButtonColor;
-        PS4Ig.color = DefaultButtonColor;
+        KeyboardMenu.SetActive(false);
+        AndroidMenu.SetActive(false);
+        XboxMenu.SetActive(false);
+        PS4Menu.SetActive(false);
     }
 }
