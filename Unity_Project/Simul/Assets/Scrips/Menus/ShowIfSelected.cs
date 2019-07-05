@@ -7,7 +7,14 @@ using UnityEngine.EventSystems;
 public class ShowIfSelected : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public GameObject setThisActive = null;
+    public bool toggleFirst = false;
 
+    private void OnEnable() {
+        if(toggleFirst)
+        {
+            setThisActive.SetActive(true);
+        }
+    }
     public void OnSelect(BaseEventData eventData)
     {
         Debug.Log(this.gameObject.name + " was selected");

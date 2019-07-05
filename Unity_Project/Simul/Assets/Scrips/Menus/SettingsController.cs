@@ -7,16 +7,15 @@ public class SettingsController : MonoBehaviour
     public static bool IsPaused = false;
     public static bool UserInput = true;
     public InputHandler inputHandler;
-    public Color selectedButtonColor;
-    public Color unselectedColor;
-    public Image movementJoystickLeftButton;
-    public Image movementJoystickRightButton;
     public GameObject joystickRightUI;
     public GameObject joystickLeftUI;
+    public GameObject highlightJoystickRight;
+    public GameObject highlightJoystickLeft;
     public static bool joystickIsRight = true;
 
     void Start()
     {
+        joystickIsRight = PlayerPrefs.GetInt("joystickIsRight")==1?true:false;
         UpdateJoysticks(true);
     }
 
@@ -25,18 +24,19 @@ public class SettingsController : MonoBehaviour
         joystickIsRight = joystickRight;
         if(joystickIsRight)
         {
-            movementJoystickRightButton.color = selectedButtonColor;
-            movementJoystickLeftButton.color = unselectedColor;
             joystickRightUI.SetActive(true);
+            highlightJoystickRight.SetActive(true);
+            highlightJoystickLeft.SetActive(false);
             joystickLeftUI.SetActive(false);
         }
         else
         {
-            movementJoystickRightButton.color = unselectedColor;
-            movementJoystickLeftButton.color = selectedButtonColor;
             joystickRightUI.SetActive(false);
             joystickLeftUI.SetActive(true);
+            highlightJoystickRight.SetActive(false);
+            highlightJoystickLeft.SetActive(true);
         }
+        PlayerPrefs.SetInt("joystickIsRight", joystickIsRight?1:0);
         inputHandler.UpdateTouchStick();
     }
 }
