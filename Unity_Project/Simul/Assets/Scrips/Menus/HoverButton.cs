@@ -8,20 +8,26 @@ public class HoverButton : MonoBehaviour, IPointerEnterHandler
 {
     private EventSystem m_EventSystem;
     private Button thisButton = null;
-    public void OnPointerEnter(PointerEventData eventData) {
-        MakeSelected();
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        #if !UNITY_ANDROID
+            MakeSelected();
+        #endif
     }
     
     public void MakeSelected()
     {
-        if(!thisButton)
-        {
-            thisButton = GetComponent<Button>();
-        }
-        if(!m_EventSystem)
-        {
-            m_EventSystem = EventSystem.current;
-        }
-        m_EventSystem.SetSelectedGameObject(gameObject);
+        #if !UNITY_ANDROID
+            if(!thisButton)
+            {
+                thisButton = GetComponent<Button>();
+            }
+            if(!m_EventSystem)
+            {
+                m_EventSystem = EventSystem.current;
+            }
+            m_EventSystem.SetSelectedGameObject(gameObject);
+        #endif
+        
     }
 }

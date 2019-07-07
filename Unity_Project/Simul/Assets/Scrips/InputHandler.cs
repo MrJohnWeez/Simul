@@ -87,10 +87,12 @@ public class InputHandler: MonoBehaviour
         float returnThis = 0;
         if(axis == "LookX")
         {
-            returnThis = Input.GetAxis("Mouse X");
-            if(returnThis != 0)
-                return returnThis;
-
+            #if !UNITY_ANDROID
+                returnThis = Input.GetAxis("Mouse X");
+                if(returnThis != 0)
+                    return returnThis;
+            #endif
+            
             returnThis = CameraTouchController.delta.x;
             if(returnThis != 0)
                 return returnThis;

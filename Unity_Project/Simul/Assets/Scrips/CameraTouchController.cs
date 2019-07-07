@@ -10,7 +10,7 @@ public class CameraTouchController : MonoBehaviour, IDragHandler, IEndDragHandle
 
     public void OnDrag(PointerEventData data)
     {
-        if (data.dragging)
+        if (data.dragging && SettingsController.UserInput)
         {
             delta = data.delta;
             delta.x = delta.x / 25;
