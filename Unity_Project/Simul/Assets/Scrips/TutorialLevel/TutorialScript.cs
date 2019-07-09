@@ -55,7 +55,8 @@ public class TutorialScript : MonoBehaviour
     }
     public void FinishedTutorial()
     {
-        sceneController.Level1SinglePlayer();
+        PlayerPrefs.SetInt("level1Unlocked", 1);
+        sceneController.MainMenu();
     }
     public void RopeBreakCutscene()
     {

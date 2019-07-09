@@ -8,7 +8,6 @@ public class InGameMenu : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject ControlsMenu;
 
-    // Start is called before the first frame update
     void Start()
     {
         CloseAll(false);
