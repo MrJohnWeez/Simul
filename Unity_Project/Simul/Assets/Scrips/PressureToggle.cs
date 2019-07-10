@@ -5,35 +5,24 @@ using UnityEngine;
 /// <summary> Will notify PressurePlate objects when a block that has the tag "IsWeight" is inside the trigger </summary>
 public class PressureToggle : MonoBehaviour
 {
-    public Material triggeredMat = null;
-    public Material nonTriggeredMat = null;
     public PressureGate[] TriggedObjects = null;
     public PressureGate[] TriggedObjectsOn = null;
     private bool isTriggered = false;
     private bool preIsTriggered = false;
     private MeshRenderer render = null;
+    private Animator animator = null;
     
     void Start()
     {
-        render = GetComponent<MeshRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        // If trigger status has changed update the color of plate and
-        // notify any waiting objects
         if(isTriggered != preIsTriggered)
         {
             preIsTriggered = isTriggered;
-            if(isTriggered)
-            {
-                render.material = triggeredMat;
-            }
-            else
-            {
-                render.material = nonTriggeredMat;
-            }
-            
+            animator.SetBool("IsPressed", isTriggered);
         }
     }
 
