@@ -9,13 +9,32 @@ public class ControlsMenu : MonoBehaviour
     public GameObject XboxMenu = null;
     public GameObject PS4Menu = null;
 
-    private void Start() {
+    private void OnEnable() {
         #if Android
-            ShowAndroid();
+            ShowControls(1);
         #else
-        
-            ShowKeyboard();
+            ShowControls(0);
         #endif
+    }
+
+    public void ShowControls(int value)
+    {
+        if(value == 0)
+        {
+            ShowKeyboard();
+        }
+        else if(value == 1)
+        {
+            ShowAndroid();
+        }
+        else if(value == 2)
+        {
+            ShowXbox();
+        }
+        else if(value == 3)
+        {
+            ShowPS4();
+        }
     }
 
     public void ShowKeyboard()
