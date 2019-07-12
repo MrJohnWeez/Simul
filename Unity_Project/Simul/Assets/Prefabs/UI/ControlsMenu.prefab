@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7839925178860834768}
   - component: {fileID: 7839925178860834772}
   - component: {fileID: 9204311782476419530}
-  - component: {fileID: 7839925178860834773}
   m_Layer: 5
   m_Name: Keyboard
   m_TagString: Untagged
@@ -159,18 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlsMenu: {fileID: 5551226643025964566}
   menuValue: 0
---- !u!114 &7839925178860834773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7839925178860834770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f11167661a747041b3963590b36493f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  selectFirstWindows: 0
+  selectFirstAndroid: 0
 --- !u!1 &7839925179035322953
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlsMenu: {fileID: 5551226643025964566}
   menuValue: 1
+  selectFirstWindows: 0
+  selectFirstAndroid: 0
 --- !u!1 &7839925179373514121
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +509,7 @@ GameObject:
   - component: {fileID: 7839925179471322639}
   - component: {fileID: 7839925179471322638}
   - component: {fileID: 7839925179471322637}
+  - component: {fileID: 6732533733292448847}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -646,6 +638,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af6698d47a52b9f4ca3f842d6e5bc877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6732533733292448847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839925179471322632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f11167661a747041b3963590b36493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7839925179534529614
@@ -1345,6 +1349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlsMenu: {fileID: 5551226643025964566}
   menuValue: 3
+  selectFirstWindows: 0
+  selectFirstAndroid: 0
 --- !u!1 &7839925180415341455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1568,7 @@ MonoBehaviour:
   AndroidMenu: {fileID: 7839925180047213445}
   XboxMenu: {fileID: 7839925179373514121}
   PS4Menu: {fileID: 7839925179904670231}
+  UIButtons: {fileID: 7839925179035322953}
 --- !u!1 &7839925180526371440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,3 +1806,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlsMenu: {fileID: 5551226643025964566}
   menuValue: 2
+  selectFirstWindows: 0
+  selectFirstAndroid: 0

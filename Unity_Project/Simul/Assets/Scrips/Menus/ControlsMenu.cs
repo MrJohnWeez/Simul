@@ -8,9 +8,11 @@ public class ControlsMenu : MonoBehaviour
     public GameObject AndroidMenu = null;
     public GameObject XboxMenu = null;
     public GameObject PS4Menu = null;
+    public GameObject UIButtons = null;
 
     private void OnEnable() {
         #if Android
+            UIButtons.SetActive(false);
             ShowControls(1);
         #else
             ShowControls(0);
