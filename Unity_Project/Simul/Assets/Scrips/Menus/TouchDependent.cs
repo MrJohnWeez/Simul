@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Disables Gameobject if touch input is not supported
+/// <summary> Disables Gameobject if touch input is not supported </summary>
 public class TouchDependent : MonoBehaviour
 {
     void Start()

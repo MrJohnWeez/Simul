@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
+/// <summary> Handles the touch input from virtual joystics </summary>
 public class CameraTouchController : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public static Vector2 delta = new Vector2();

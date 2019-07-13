@@ -34,6 +34,7 @@ public class TutorialScript : MonoBehaviour
         RopeBreakCutscene();
     }
 
+    /// <summary> Check if both players are standing in the end areas </summary>
     public void CheckIfPlayersAreFinished()
     {
         if(Player1Finished && Player2Finished && !finishedLevel)
@@ -53,11 +54,23 @@ public class TutorialScript : MonoBehaviour
     {
         sceneController.TutorialLevel();
     }
+
+    /// <summary> Finish the level and go to the map cutscene or normal level selection </summary>
     public void FinishedTutorial()
     {
-        PlayerPrefs.SetInt("level1Unlocked", 1);
-        sceneController.MainMenu();
+        if(PlayerPrefs.GetInt("level1Unlocked")==1?true:false)
+        {
+            sceneController.LevelSelection();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("level1Unlocked", 1);
+            LevelSelectionController.AnimateNewLevel = true;
+            sceneController.LevelSelection();
+        }
     }
+
+
     public void RopeBreakCutscene()
     {
         DismissMenus();
@@ -66,7 +79,6 @@ public class TutorialScript : MonoBehaviour
         mainCam.transform.position = RokeBreakCam.position;
         mainCam.transform.rotation = RokeBreakCam.rotation;
         currentCoroutine = StartCoroutine(MoveToRope());
-        
     }
 
     public void OverviewCutscene()
@@ -159,6 +171,7 @@ public class TutorialScript : MonoBehaviour
         inGameMenu.OpenControlsMenu();
     }
 
+    /// <summary> Closes all menus and gives the player control again if entered true </summary>
     public void DismissMenus(bool SetPlayerActive = false)
     {
         if(SetPlayerActive)
@@ -173,6 +186,7 @@ public class TutorialScript : MonoBehaviour
         SettingsController.UserInput = true;
     }
 
+    /// <summary> Start the tutorial level and give the user control of their character </summary>
     public void StartGame()
     {
         if(currentCoroutine != null)

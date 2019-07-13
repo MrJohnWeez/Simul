@@ -6,6 +6,16 @@ using UnityEngine.SceneManagement;
 /// <summary> Used to load different scenes within our game </summary>
 public class SceneController: MonoBehaviour
 {
+    public void Level3SinglePlayer()
+    {
+        SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
+    }
+
+    public void Level2SinglePlayer()
+    {
+        SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
+    }
+
     public void Level1SinglePlayer()
     {
         SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
@@ -16,14 +26,14 @@ public class SceneController: MonoBehaviour
         SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
     }
 
+    public void LevelSelection()
+    {
+        SceneManager.LoadScene("LevelSelection", LoadSceneMode.Single);
+    }
+
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-    }
-
-    public void About()
-    {
-        Debug.Log("Go to about menu");
     }
     
     /// <summary> Quit the game or stop playing if in editor </summary>

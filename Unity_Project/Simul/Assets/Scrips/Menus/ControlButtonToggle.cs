@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary> Creates a button that will be selected and invoked when selected with a controller </summary>
 public class ControlButtonToggle : MonoBehaviour, ISelectHandler
 {
     public ControlsMenu controlsMenu = null;
@@ -30,6 +31,7 @@ public class ControlButtonToggle : MonoBehaviour, ISelectHandler
         #endif
     }
 
+    /// <summary> Make current button selected dependent on what system is running </summary>
     public void MakeSelected(bool forceSelect = false)
     {
         #if UNITY_ANDROID

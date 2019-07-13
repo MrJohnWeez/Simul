@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary> Selects a button if a mouse if hovered on it </summary>
 public class HoverButton : MonoBehaviour, IPointerEnterHandler 
 {
     private EventSystem m_EventSystem;

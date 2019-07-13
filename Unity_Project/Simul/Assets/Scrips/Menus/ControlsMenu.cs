@@ -19,6 +19,7 @@ public class ControlsMenu : MonoBehaviour
         #endif
     }
 
+    /// <summary> Show control images based on the value given </summary>
     public void ShowControls(int value)
     {
         if(value == 0)

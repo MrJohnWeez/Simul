@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
+/// <summary> Selects a button first so that controller navigation can take place.true
+/// Also if the user unselects all buttons this will be the first button to be selected again </summary>
 public class SelectFirst : MonoBehaviour
 {
     private EventSystem m_EventSystem;
@@ -15,6 +18,7 @@ public class SelectFirst : MonoBehaviour
         #endif
     }
 
+    /// <summary> Select this button and notify the event system of the change </summary>
     public void MakeSelected(bool forceSelect = false)
     {
         #if !UNITY_ANDROID
