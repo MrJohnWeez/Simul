@@ -8,17 +8,17 @@ public class SceneController: MonoBehaviour
 {
     public void Level3SinglePlayer()
     {
-        SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level3", LoadSceneMode.Single);
     }
 
     public void Level2SinglePlayer()
     {
-        SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level2", LoadSceneMode.Single);
     }
 
     public void Level1SinglePlayer()
     {
-        SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level1", LoadSceneMode.Single);
     }
 
     public void TutorialLevel()

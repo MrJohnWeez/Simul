@@ -7,8 +7,6 @@ public class SettingsController : MonoBehaviour
     public static bool IsPaused = false;
     public static bool UserInput = true;
     public InputHandler inputHandler;
-    public GameObject joystickRightUI;
-    public GameObject joystickLeftUI;
     public GameObject highlightJoystickRight;
     public GameObject highlightJoystickLeft;
     public static bool joystickIsRight = true;
@@ -30,15 +28,11 @@ public class SettingsController : MonoBehaviour
         joystickIsRight = joystickRight;
         if(joystickIsRight)
         {
-            joystickRightUI.SetActive(true);
             highlightJoystickRight.SetActive(true);
             highlightJoystickLeft.SetActive(false);
-            joystickLeftUI.SetActive(false);
         }
         else
         {
-            joystickRightUI.SetActive(false);
-            joystickLeftUI.SetActive(true);
             highlightJoystickRight.SetActive(false);
             highlightJoystickLeft.SetActive(true);
         }
@@ -73,29 +67,29 @@ public class SettingsController : MonoBehaviour
     private void Update() {
 
         // Update the correct touch joystick when input has been disabled
-        if(oldUserInput != UserInput)
-        {
-            if(!UserInput)
-            {
-                joystickRightUI.SetActive(false);
-                joystickLeftUI.SetActive(false);
-                inputHandler.UpdateTouchStick();
-            }
-            else
-            {
-                if(joystickIsRight)
-                {
-                    joystickRightUI.SetActive(true);
-                    joystickLeftUI.SetActive(false);
-                }
-                else
-                {
-                    joystickRightUI.SetActive(false);
-                    joystickLeftUI.SetActive(true);
-                }
-            }
-        }
+        // if(oldUserInput != UserInput)
+        // {
+        //     if(!UserInput)
+        //     {
+        //         joystickRightUI.SetActive(false);
+        //         joystickLeftUI.SetActive(false);
+        //         inputHandler.UpdateTouchStick();
+        //     }
+        //     else
+        //     {
+        //         if(joystickIsRight)
+        //         {
+        //             joystickRightUI.SetActive(true);
+        //             joystickLeftUI.SetActive(false);
+        //         }
+        //         else
+        //         {
+        //             joystickRightUI.SetActive(false);
+        //             joystickLeftUI.SetActive(true);
+        //         }
+        //     }
+        // }
         
-        oldUserInput = UserInput;
+        // oldUserInput = UserInput;
     }
 }
