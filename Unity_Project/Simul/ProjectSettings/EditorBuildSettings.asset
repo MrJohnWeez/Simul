@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Levels/TutorialLevel.unity
     guid: a13ead641e3578d4f98bce5c93c626b7
   - enabled: 1
-    path: Assets/Scenes/Game Levels/Level1SinglePlayer.unity
-    guid: b26863b13c409a9419abc8d54c6be45e
+    path: Assets/Scenes/Game Levels/Level2.unity
+    guid: f31ff3357a43a5545a2a344dd8682334
+  - enabled: 1
+    path: Assets/Scenes/Game Levels/Level1.unity
+    guid: cad309b58bf618c45b2bbb47be07373e
+  - enabled: 1
+    path: Assets/Scenes/Game Levels/Level3.unity
+    guid: a176cc06295ffa14fa8c18fa43975edf
   m_configObjects: {}
