@@ -14,10 +14,16 @@ public class Level3Script : BaseLevel
     {
         if(PlayerPrefs.GetInt("level4Unlocked")==1?true:false)
         {
+            PlayerPrefs.SetInt("level1Unlocked", 1);
+            PlayerPrefs.SetInt("level2Unlocked", 1);
+            PlayerPrefs.SetInt("level3Unlocked", 1);
             sceneController.LevelSelection();
         }
         else
         {
+            PlayerPrefs.SetInt("level1Unlocked", 1);
+            PlayerPrefs.SetInt("level2Unlocked", 1);
+            PlayerPrefs.SetInt("level3Unlocked", 1);
             PlayerPrefs.SetInt("level4Unlocked", 1);
             LevelSelectionController.AnimateNewLevel = true;
             sceneController.LevelSelection();
