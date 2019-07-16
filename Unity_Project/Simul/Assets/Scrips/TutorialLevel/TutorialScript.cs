@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialScript : MonoBehaviour
+public class TutorialScript : BaseLevel
 {
-    [System.NonSerialized]
-    public bool Player1Finished = false;
-    [System.NonSerialized]
-    public bool Player2Finished = false;
-    public PlayerSwitcher playerSwitcher = null;
+    
     public GameObject RopeBreakInstructions = null;
     public GameObject ChallengeInstructions = null;
     public GameObject LogInstuctions = null;
@@ -21,42 +17,22 @@ public class TutorialScript : MonoBehaviour
     public Transform SwitchPlayerCam = null;
     public Transform EndTutorialCam = null;
     public Transform PlayerCamera = null;
-    private GameObject mainCam = null;
-    private Coroutine currentCoroutine = null;
-    public SceneController sceneController = null;
-    public InGameMenu inGameMenu = null;
-    private bool finishedLevel = false;
 
-    void Start()
+    protected override void Start()
     {
-        mainCam = Camera.main.gameObject;
+        base.Start();
         playerSwitcher.DisableAllPlayers();
         RopeBreakCutscene();
     }
 
-    /// <summary> Check if both players are standing in the end areas </summary>
-    public void CheckIfPlayersAreFinished()
-    {
-        if(Player1Finished && Player2Finished && !finishedLevel)
-        {
-            finishedLevel = true;
-            FinishedTutorial();
-        }
-    }
-
-    private void Update() {
-        if(SettingsController.UserInput && InputHandler.instance.GetButtonDown("UpButton"))
-        {
-            RestartLevel();
-        }
-    }
-    public void RestartLevel()
+    public override void RestartLevel()
     {
         sceneController.TutorialLevel();
     }
 
+
     /// <summary> Finish the level and go to the map cutscene or normal level selection </summary>
-    public void FinishedTutorial()
+    public override void FinishedLevel()
     {
         if(PlayerPrefs.GetInt("level1Unlocked")==1?true:false)
         {

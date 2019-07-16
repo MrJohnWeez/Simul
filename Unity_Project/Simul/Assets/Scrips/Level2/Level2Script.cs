@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level2Script : MonoBehaviour
+public class Level2Script : BaseLevel
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    protected override void Start() {
+        base.Start();
+        playerSwitcher.UpdateActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void FinishedLevel()
     {
-        
+        if(PlayerPrefs.GetInt("level3Unlocked")==1?true:false)
+        {
+            sceneController.LevelSelection();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("level3Unlocked", 1);
+            LevelSelectionController.AnimateNewLevel = true;
+            sceneController.LevelSelection();
+        }
+    }
+
+    public override void RestartLevel()
+    {
+        sceneController.Level2SinglePlayer();
     }
 }

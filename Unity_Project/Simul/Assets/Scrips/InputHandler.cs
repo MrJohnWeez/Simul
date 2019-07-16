@@ -136,7 +136,7 @@ public class InputHandler: MonoBehaviour
         }
         else if(buttonValue == "LeftButton")
         {
-            returnThis = Input.GetKeyDown(KeyCode.Tab); 
+            returnThis = Input.GetKeyDown(KeyCode.Q); 
             if(returnThis)
                 return returnThis;
 
