@@ -10,7 +10,7 @@ public class PressureGate : MonoBehaviour
     public bool isActiveOnStart = true;
 
     private void Start() {
-        gameObject.SetActive(isActiveOnStart);
+        //gameObject.SetActive(isActiveOnStart);
     }
     private void Update() {
         if(outPutDebugInfo)
