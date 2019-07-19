@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1536256208152755616}
   - component: {fileID: 1536256208152755623}
   - component: {fileID: 1536256208152755618}
+  - component: {fileID: 4707241628249129872}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MonoBehaviour:
   leftTouchMovement: {fileID: 0}
   rightTouchMovement: {fileID: 0}
   connectedController: 0
+--- !u!114 &4707241628249129872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536256208152755622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c2685f5ee31a74b826afd7ccc8cbf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

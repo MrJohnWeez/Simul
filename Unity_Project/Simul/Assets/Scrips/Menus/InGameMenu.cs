@@ -56,7 +56,6 @@ public class InGameMenu : MonoBehaviour
 
     public void CloseAll(bool overrideSettings = true)
     {
-        //Cursor.visible = false;
         if(overrideSettings)
         {
             SettingsController.UserInput = true;

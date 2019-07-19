@@ -44,19 +44,6 @@ public class PlayerController : MonoBehaviour
             InputHandler.instance.CheckForConnectedControllers();
         }
 
-        #if !UNITY_EDITOR
-            if(SettingsController.IsPaused)
-            {
-                //Cursor.visible = true;
-                //Cursor.lockState = CursorLockMode.Confined;
-            }
-            else
-            {
-               // Cursor.visible = false;
-                //Cursor.lockState = CursorLockMode.Locked;
-            }
-        #endif
-
         if(isActive)
         {
             float moveHorizontal = 0;
