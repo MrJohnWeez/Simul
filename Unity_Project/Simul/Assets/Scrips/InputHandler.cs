@@ -40,24 +40,6 @@ public class InputHandler: MonoBehaviour
         }
     }
 
-    public float GetAxisRaw(string axis)
-    {
-        if(ForceZero)
-            return 0;
-
-        Vector2 touchMovementRaw = new Vector2(touchMovement.Horizontal, touchMovement.Vertical);
-
-        if(touchMovement && axis == "Horizontal" && touchMovementRaw.x != 0)
-        {
-            return touchMovementRaw.x;
-        }
-        else if(touchMovement && axis == "Vertical" && touchMovementRaw.y != 0)
-        {
-            return touchMovementRaw.y;
-        }
-        
-        return Input.GetAxisRaw(axis);
-    }
 
     public void CheckForConnectedControllers()
     {
@@ -80,59 +62,122 @@ public class InputHandler: MonoBehaviour
         connectedController = ControllerType.None;
     }
 
+    // private void Update() {
+    //     // Debug.Log("RightX: " + GetAxis("LookX") + 
+    //     //             "   RightY: " + GetAxis("LookY") + 
+    //     //             "   MoveX: " + GetAxis("MoveX") + 
+    //     //             "   MoveY: " + GetAxis("MoveY"));
+    // }
+
     public float GetAxis(string axis)
     {
         if(ForceZero)
             return 0;
-        float returnThis = 0;
+
         if(axis == "LookX")
         {
             #if !UNITY_ANDROID
-                returnThis = Input.GetAxis("Mouse X");
-                if(returnThis != 0)
-                    return returnThis;
+                if(Input.GetAxisRaw("Mouse X") != 0)
+                {
+                    return Input.GetAxisRaw("Mouse X");
+                }
             #endif
             
-            returnThis = CameraTouchController.delta.x;
-            if(returnThis != 0)
-                return returnThis;
+            if(CameraTouchController.delta.x != 0)
+            {
+                return CameraTouchController.delta.x;
+            }
 
             if(connectedController == ControllerType.Xbox)
             {
-                returnThis = Input.GetAxis("Mouse X Xbox");
+                return ConvertRange(-(2.0f/3.0f), (2.0f/3.0f), -1, 1, Input.GetAxisRaw("RightStick X Xbox"));
             }
             else if(connectedController == ControllerType.PS4)
             {
-                returnThis = Input.GetAxis("Mouse X PS4");
+                return Input.GetAxisRaw("RightStick X PS4");
             }
         }
         else if(axis == "LookY")
         {
             #if !UNITY_ANDROID
-                returnThis = Input.GetAxis("Mouse Y");
-                if(returnThis != 0)
-                    return returnThis;
+                if(Input.GetAxisRaw("Mouse Y") != 0)
+                {
+                    return Input.GetAxisRaw("Mouse Y");
+                }
             #endif
             
-            returnThis = CameraTouchController.delta.y;
-            if(returnThis != 0)
-                return returnThis;
+            if(CameraTouchController.delta.y != 0)
+            {
+                return CameraTouchController.delta.y;
+            }
 
             if(connectedController == ControllerType.Xbox)
             {
-                returnThis = Input.GetAxis("Mouse Y Xbox");
+                return ConvertRange(-(2.0f/3.0f), (2.0f/3.0f), -1, 1, Input.GetAxisRaw("RightStick Y Xbox"));
             }
             else if(connectedController == ControllerType.PS4)
             {
-                returnThis = Input.GetAxis("Mouse Y PS4");
+                return Input.GetAxisRaw("RightStick Y PS4");
+            }
+        }
+        else if (axis == "MoveX")
+        {
+            if(touchMovement && touchMovement.Horizontal != 0)
+            {
+                return touchMovement.Horizontal;
+            }
+
+            if(Input.GetAxisRaw("Horizontal") != 0)
+            {
+                return Input.GetAxisRaw("Horizontal");
+            }
+
+            if(connectedController == ControllerType.Xbox)
+            {
+                return Input.GetAxisRaw("LeftStick X Xbox");
+            }
+            else if(connectedController == ControllerType.PS4)
+            {
+                return Input.GetAxisRaw("LeftStick X PS4");
+            }
+            
+        }
+        else if (axis == "MoveY")
+        {
+            if(touchMovement && touchMovement.Vertical != 0)
+            {
+                return touchMovement.Vertical;
+            }
+
+            if(Input.GetAxisRaw("Vertical") != 0)
+            {
+                return Input.GetAxisRaw("Vertical");
+            }
+
+            if(connectedController == ControllerType.Xbox)
+            {
+                return Input.GetAxisRaw("LeftStick Y Xbox");
+            }
+            else if(connectedController == ControllerType.PS4)
+            {
+                return Input.GetAxisRaw("LeftStick Y PS4");
             }
         }
         else
         {
-            returnThis = Input.GetAxis(axis);
+            return 0;
         }
 
-        return returnThis;
+        return 0;
+    }
+
+    public static float ConvertRange(
+    float originalStart, float originalEnd, // original range
+    float newStart, float newEnd, // desired range
+    float value) // value to convert
+    {
+        double scale = (double)(newEnd - newStart) / (originalEnd - originalStart);
+        return (float)(newStart + ((value - originalStart) * scale));
     }
 
     public bool GetButtonDown(string buttonValue)

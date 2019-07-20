@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     
     [Header("Camera Properties")]
     public Transform target;
-    public float defualtSmoothing = 0.3f;
+    public float defualtSmoothing = 0.0f;
     public float verticalRotation = 0.0f;
     public float horizontalRotation = 180.0f;
     public float distanceAway = 2.81f;
@@ -70,9 +70,9 @@ public class PlayerController : MonoBehaviour
 
             if(SettingsController.UserInput)
             {
-                moveHorizontal = SettingsController.InvertMovementX ? -InputHandler.instance.GetAxisRaw("Horizontal") : InputHandler.instance.GetAxisRaw("Horizontal");
+                moveHorizontal = SettingsController.InvertMovementX ? -InputHandler.instance.GetAxis("MoveX") : InputHandler.instance.GetAxis("MoveX");
 
-                moveVertical = SettingsController.InvertMovementY ? -InputHandler.instance.GetAxisRaw("Vertical") : InputHandler.instance.GetAxisRaw("Vertical");
+                moveVertical = SettingsController.InvertMovementY ? -InputHandler.instance.GetAxis("MoveY") : InputHandler.instance.GetAxis("MoveY");
             }
 
             Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
@@ -106,9 +106,10 @@ public class PlayerController : MonoBehaviour
 
         if(isActive && SettingsController.UserInput)
         {
-            int invertX = SettingsController.InvertMovementX ? -1 : 1;
-            int invertY = SettingsController.InvertMovementY ? -1 : 1;
+            int invertX = SettingsController.InvertCameraX ? -1 : 1;
+            int invertY = SettingsController.InvertCameraY ? -1 : 1;
 
+            //Debug.Log("LookY: " + InputHandler.instance.GetAxis("LookY") + "   LookX: " + InputHandler.instance.GetAxis("LookX"));
             // Get inputs
             verticalRotation += InputHandler.instance.GetAxis("LookY") * SettingsController.CameraSensitivityY * 0.1f * invertX;
             horizontalRotation += InputHandler.instance.GetAxis("LookX") * SettingsController.CameraSensitivityX * 0.1f * invertY;

@@ -140,7 +140,7 @@ MonoBehaviour:
   distanceAway: 2.81
   CamOffset: {x: 0, y: 0.6, z: 0}
   verticleRotationLimitMin: 89
-  verticleRotationLimitMax: 10
+  verticleRotationLimitMax: 8
   maxDistanceAway: 3
   minDistanceAway: 0.1
   layerMaskToExclude:
