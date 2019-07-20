@@ -24,7 +24,6 @@ public class PlayerSwitcher : MonoBehaviour
     {
         if(SettingsController.UserInput && InputHandler.instance.GetButtonDown("LeftButton"))
         {
-            
             TogglePlayer();
         }
     }

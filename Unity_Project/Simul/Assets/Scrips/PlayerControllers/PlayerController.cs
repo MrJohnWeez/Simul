@@ -74,6 +74,10 @@ public class PlayerController : MonoBehaviour
                 transform.LookAt(transform.position + motion, transform.up);
             }
         }
+        else
+        {
+            anim.SetFloat ("MoveAmount", 0);
+        }
         
 
         RaycastHit hit;
@@ -102,14 +106,14 @@ public class PlayerController : MonoBehaviour
         if(isActive)
         {
             rb.AddForce(motion * moveSpeed, ForceMode.Force);
-            if(!isGrounded)
-                rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
-
-            // Disable jump because it is not used in our game and is buggy
-            // if(isGrounded && InputHandler.instance.GetButtonDown("DownButton") && SettingsController.UserInput)
-            //     rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
-            
         }
+
+        if(!isGrounded)
+            rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
+
+        // Disable jump because it is not used in our game and is buggy
+        // if(isGrounded && InputHandler.instance.GetButtonDown("DownButton") && SettingsController.UserInput)
+        //     rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
     }
 
     void LateUpdate()
