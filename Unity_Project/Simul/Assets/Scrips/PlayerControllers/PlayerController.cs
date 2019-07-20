@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 motion;
     private bool isGrounded = false;
 
+    //Sound Vars
+    public AudioSource AudioClip;
+
     // Camera control variables
     private GameObject mainCamera = null;
     public float cameraRotateSpeed = 2;
@@ -38,7 +41,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(!checkedForControllers && InputHandler.instance != null)
+
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+            AudioClip.Play();
+        else if (!Input.GetButton("Horizontal") && !Input.GetButton("Vertical") && AudioClip.isPlaying)
+            AudioClip.Stop(); // or Pause()
+
+
+        if (!checkedForControllers && InputHandler.instance != null)
         {
             checkedForControllers = true;
             InputHandler.instance.CheckForConnectedControllers();
@@ -49,10 +59,16 @@ public class PlayerController : MonoBehaviour
             float moveHorizontal = 0;
             float moveVertical = 0;
 
-            if(SettingsController.UserInput)
+
+            
+
+            if (SettingsController.UserInput)
             {
                 moveHorizontal = InputHandler.instance.GetAxisRaw("Horizontal");
                 moveVertical = InputHandler.instance.GetAxisRaw("Vertical");
+                
+
+
             }
 
             Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
@@ -106,6 +122,7 @@ public class PlayerController : MonoBehaviour
         if(isActive)
         {
             rb.AddForce(motion * moveSpeed, ForceMode.Force);
+            
         }
 
         if(!isGrounded)
@@ -119,7 +136,8 @@ public class PlayerController : MonoBehaviour
     void LateUpdate()
     {
         if(isActive && SettingsController.UserInput)
-        { 
+        {
+            
             mainCamera.transform.position = cameraPlaceholder.transform.position;
             mainCamera.transform.rotation = cameraPlaceholder.transform.rotation;
         }

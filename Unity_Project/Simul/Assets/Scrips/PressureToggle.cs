@@ -9,6 +9,7 @@ public class PressureToggle : MonoBehaviour
     public PressureGate[] TriggedObjects = null;
     public PressureGate[] TriggedObjectsOn = null;
     public CableTrigger[] ConnectedCables = null;
+    public AudioSource AudioClip;
     private bool isTriggered = false;
     private bool preIsTriggered = false;
     private MeshRenderer render = null;
@@ -49,6 +50,7 @@ public class PressureToggle : MonoBehaviour
             {
                 ct.EnableCable();
             }
+            AudioClip.Play();
         }
     }
 
