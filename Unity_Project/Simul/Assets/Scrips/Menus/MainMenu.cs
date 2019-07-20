@@ -6,13 +6,22 @@ using UnityEngine.UI;
 /// <summary> Handles what menus appear and which ones are toggled off </summary>
 public class MainMenu : MonoBehaviour
 {
+    public static bool forceAboutMenu = false;
     public GameObject mainMenu = null;
     public GameObject aboutMenu = null;
     public GameObject controlsMenu = null;
 
     private void Start()
     {
-        OpenMainMenu();
+        if(forceAboutMenu)
+        {
+            forceAboutMenu = false;
+            OpenAboutMenu();
+        }
+        else
+        {
+            OpenMainMenu();
+        }
     }
 
     public void OpenAboutMenu()

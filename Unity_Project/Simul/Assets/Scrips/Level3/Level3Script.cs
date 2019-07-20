@@ -12,22 +12,11 @@ public class Level3Script : BaseLevel
 
     public override void FinishedLevel()
     {
-        if(PlayerPrefs.GetInt("level4Unlocked")==1?true:false)
-        {
-            PlayerPrefs.SetInt("level1Unlocked", 1);
-            PlayerPrefs.SetInt("level2Unlocked", 1);
-            PlayerPrefs.SetInt("level3Unlocked", 1);
-            sceneController.LevelSelection();
-        }
-        else
-        {
-            PlayerPrefs.SetInt("level1Unlocked", 1);
-            PlayerPrefs.SetInt("level2Unlocked", 1);
-            PlayerPrefs.SetInt("level3Unlocked", 1);
-            PlayerPrefs.SetInt("level4Unlocked", 1);
-            LevelSelectionController.AnimateNewLevel = true;
-            sceneController.LevelSelection();
-        }
+        PlayerPrefs.SetInt("level1Unlocked", 1);
+        PlayerPrefs.SetInt("level2Unlocked", 1);
+        PlayerPrefs.SetInt("level3Unlocked", 1);
+        MainMenu.forceAboutMenu = true;
+        sceneController.MainMenu();
     }
 
     public override void RestartLevel()
