@@ -21,6 +21,8 @@ public class Level3Script : BaseLevel
 
     public override void RestartLevel()
     {
+        SettingsController.UserInput = true;
+        SettingsController.IsPaused = false;
         sceneController.Level3SinglePlayer();
     }
 }

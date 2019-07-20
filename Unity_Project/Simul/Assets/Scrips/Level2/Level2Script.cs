@@ -30,6 +30,8 @@ public class Level2Script : BaseLevel
 
     public override void RestartLevel()
     {
+        SettingsController.UserInput = true;
+        SettingsController.IsPaused = false;
         sceneController.Level2SinglePlayer();
     }
 }

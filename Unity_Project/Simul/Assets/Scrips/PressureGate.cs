@@ -6,16 +6,8 @@ using UnityEngine;
 public class PressureGate : MonoBehaviour
 {
     private int toogleCount = 0;
-    public bool outPutDebugInfo = false;
     public bool isActiveOnStart = true;
 
-    private void Start() {
-        //gameObject.SetActive(isActiveOnStart);
-    }
-    private void Update() {
-        if(outPutDebugInfo)
-            Debug.Log("toogleCount: " + toogleCount);
-    }
 
 
     /// <summary> Gate should no longer be blocking path </summary>

@@ -5716,7 +5716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &897202296
 BoxCollider:
@@ -8196,8 +8195,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1417496511923006474}
-        m_MethodName: Level2SinglePlayer
+      - m_Target: {fileID: 1285219783}
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13805,7 +13804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &1843637645
 BoxCollider:
@@ -17923,6 +17921,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598883123073429852, guid: c4b2086e4a533ef4899d70e865637b6d,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4b2086e4a533ef4899d70e865637b6d, type: 3}
