@@ -106,6 +106,27 @@ public class InputHandler: MonoBehaviour
                 returnThis = Input.GetAxis("Mouse X PS4");
             }
         }
+        else if(axis == "LookY")
+        {
+            #if !UNITY_ANDROID
+                returnThis = Input.GetAxis("Mouse Y");
+                if(returnThis != 0)
+                    return returnThis;
+            #endif
+            
+            returnThis = CameraTouchController.delta.y;
+            if(returnThis != 0)
+                return returnThis;
+
+            if(connectedController == ControllerType.Xbox)
+            {
+                returnThis = Input.GetAxis("Mouse Y Xbox");
+            }
+            else if(connectedController == ControllerType.PS4)
+            {
+                returnThis = Input.GetAxis("Mouse Y PS4");
+            }
+        }
         else
         {
             returnThis = Input.GetAxis(axis);

@@ -2816,7 +2816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &311579426
 BoxCollider:
@@ -12422,7 +12421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 1
   isActiveOnStart: 1
 --- !u!65 &1211160272
 BoxCollider:
@@ -15307,7 +15305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &1437777847
 BoxCollider:
@@ -16896,7 +16893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &1602889589
 BoxCollider:
@@ -18391,7 +18387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &1721371351
 BoxCollider:
@@ -21735,7 +21730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &2019264352
 BoxCollider:
@@ -22997,7 +22991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!65 &2130445066
 BoxCollider:
@@ -24167,6 +24160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 4289677763602050286, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4289677763602050281, guid: 728b5fcce68d4a74ab2f0de806d6af51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24300,6 +24298,36 @@ PrefabInstance:
     - target: {fileID: 2894700359286549134, guid: 728b5fcce68d4a74ab2f0de806d6af51,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 3676085540708783818, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 3736240977989157629, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 1452692941831432096, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 2898639985338943036, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 2352780639504737696, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 3202342670951073762, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
       value: 
       objectReference: {fileID: 1417496511384931871}
     m_RemovedComponents: []

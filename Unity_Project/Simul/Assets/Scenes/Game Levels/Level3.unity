@@ -1347,7 +1347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!1 &147136208
 GameObject:
@@ -1792,7 +1791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!43 &222222266
 Mesh:
@@ -2346,7 +2344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!1001 &276197864
 PrefabInstance:
@@ -10083,7 +10080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!1001 &1274280732
 PrefabInstance:
@@ -11246,7 +11242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!1 &1393995729
 GameObject:
@@ -15127,7 +15122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc0285145c7cf4faaee519e6dc7848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outPutDebugInfo: 0
   isActiveOnStart: 1
 --- !u!1 &1781105805
 GameObject:
@@ -18927,6 +18921,36 @@ PrefabInstance:
     - target: {fileID: 2894700359286549134, guid: 728b5fcce68d4a74ab2f0de806d6af51,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 3676085540708783818, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 3736240977989157629, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 1452692941831432096, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 2898639985338943036, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 2352780639504737696, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
+      value: 
+      objectReference: {fileID: 1417496511384931871}
+    - target: {fileID: 3202342670951073762, guid: 728b5fcce68d4a74ab2f0de806d6af51,
+        type: 3}
+      propertyPath: settingsController
       value: 
       objectReference: {fileID: 1417496511384931871}
     m_RemovedComponents: []
