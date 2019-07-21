@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
 
     //Sound Vars
-    public AudioSource AudioClip;
+    public AudioSource AudioClip = null;
 
     // Camera control variables
     private GameObject mainCamera = null;
@@ -41,12 +41,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
+        //used to play walking audio
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
             AudioClip.Play();
+        }
         else if (!Input.GetButton("Horizontal") && !Input.GetButton("Vertical") && AudioClip.isPlaying)
+        {
             AudioClip.Stop(); // or Pause()
-
+        }
 
         if (!checkedForControllers && InputHandler.instance != null)
         {
