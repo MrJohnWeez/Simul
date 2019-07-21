@@ -32,7 +32,7 @@ public class SelectFirst : MonoBehaviour
             }
             if(m_EventSystem.currentSelectedGameObject == null || forceSelect)
             {
-                Debug.Log("Selected Again");
+                //Debug.Log("Selected Again");
                 thisButton.Select();
                 thisButton.OnSelect(null);
             }

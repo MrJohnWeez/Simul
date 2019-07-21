@@ -9,6 +9,7 @@ public class PressureToggle : MonoBehaviour
     public PressureGate[] TriggedObjects = null;
     public PressureGate[] TriggedObjectsOn = null;
     public CableTrigger[] ConnectedCables = null;
+    public DoorGate[] Doors = null;
     public AudioSource AudioClip;
     private bool isTriggered = false;
     private bool preIsTriggered = false;
@@ -50,7 +51,13 @@ public class PressureToggle : MonoBehaviour
             {
                 ct.EnableCable();
             }
-            AudioClip.Play();
+            foreach (DoorGate dg in Doors)
+            {
+                dg.SetDoorState(true);
+            }
+
+            if(AudioClip)
+                AudioClip.Play();
         }
     }
 
@@ -69,6 +76,10 @@ public class PressureToggle : MonoBehaviour
             foreach (CableTrigger ct in ConnectedCables)
             {
                 ct.DisableCable();
+            }
+            foreach (DoorGate dg in Doors)
+            {
+                dg.SetDoorState(false);
             }
         }
     }

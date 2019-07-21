@@ -15,7 +15,6 @@ public class Player1FinishedLevel3 : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        Debug.Log("Failed");
         if(other.tag == "Player")
         {
             level3Script.Player1Finished = false;

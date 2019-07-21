@@ -20,7 +20,7 @@ public class EasterEgg : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(counter1);
+        //Debug.Log(counter1);
         if(Input.GetKeyDown(KeyCode.M))
         {
             AddOneToCount();

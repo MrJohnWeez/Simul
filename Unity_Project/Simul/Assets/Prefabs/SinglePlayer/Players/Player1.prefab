@@ -141,11 +141,12 @@ MonoBehaviour:
   CamOffset: {x: 0, y: 0.6, z: 0}
   verticleRotationLimitMin: 89
   verticleRotationLimitMax: 8
-  maxDistanceAway: 3
+  maxDistanceAway: 100
   minDistanceAway: 0.1
   layerMaskToExclude:
     serializedVersion: 2
     m_Bits: 0
+  AudioClip: {fileID: 0}
 --- !u!1 &7598883124722563962
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7598883124722563962}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a3d94809479d4904a8ab4e4f85410668, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
