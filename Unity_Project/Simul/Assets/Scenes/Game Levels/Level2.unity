@@ -6630,6 +6630,11 @@ PrefabInstance:
       propertyPath: ConnectedCables.Array.data[0]
       value: 
       objectReference: {fileID: 750684421}
+    - target: {fileID: 7971406967043202752, guid: 259519bd2b4d7a74b9c4205b8e8149ca,
+        type: 3}
+      propertyPath: AudioClip
+      value: 
+      objectReference: {fileID: 43835303}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 259519bd2b4d7a74b9c4205b8e8149ca, type: 3}
 --- !u!4 &1041581703 stripped
@@ -12112,6 +12117,11 @@ PrefabInstance:
       propertyPath: ConnectedCables.Array.data[0]
       value: 
       objectReference: {fileID: 482439458}
+    - target: {fileID: 7971406967043202752, guid: 259519bd2b4d7a74b9c4205b8e8149ca,
+        type: 3}
+      propertyPath: AudioClip
+      value: 
+      objectReference: {fileID: 1941936286}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 259519bd2b4d7a74b9c4205b8e8149ca, type: 3}
 --- !u!4 &1665632877 stripped
@@ -14814,9 +14824,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 358c72b65f1db4f238886aec03017666, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bb0992340660d489884820e0f3ab734d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.122
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -18303,6 +18313,11 @@ PrefabInstance:
       propertyPath: isActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7598883123073429853, guid: c4b2086e4a533ef4899d70e865637b6d,
+        type: 3}
+      propertyPath: AudioClip
+      value: 
+      objectReference: {fileID: 1999274499}
     - target: {fileID: 7598883123073429852, guid: c4b2086e4a533ef4899d70e865637b6d,
         type: 3}
       propertyPath: m_Constraints
@@ -18938,5 +18953,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1732896133355154484, guid: b69025051d472c643823584c6cd9ed31,
+        type: 3}
+      propertyPath: AudioClip
+      value: 
+      objectReference: {fileID: 1999274499}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b69025051d472c643823584c6cd9ed31, type: 3}
