@@ -6,7 +6,7 @@ public class HandleCursor : MonoBehaviour
 {
     void Update()
     {
-        #if !UNITY_EDITOR
+        #if UNITY_STANDALONE
             if(Cursor.visible)
             {
                 Cursor.visible = false;

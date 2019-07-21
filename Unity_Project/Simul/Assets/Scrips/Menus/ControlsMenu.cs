@@ -11,7 +11,7 @@ public class ControlsMenu : MonoBehaviour
     public GameObject UIButtons = null;
 
     private void OnEnable() {
-        #if Android
+        #if UNITY_ANDROID
             UIButtons.SetActive(false);
             ShowControls(1);
         #else

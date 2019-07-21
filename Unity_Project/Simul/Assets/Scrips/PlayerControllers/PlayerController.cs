@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private float smooth = 0f;
     private GameObject _mainCamera = null;
     private bool _checkedForControllers = false;
+    private bool _isPlayingAudio = false;
 
     void Start()
     {
@@ -59,16 +60,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //used to play walking audio
-        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
-        {
-            AudioClip.Play();
-        }
-        else if (!Input.GetButton("Horizontal") && !Input.GetButton("Vertical") && AudioClip.isPlaying)
-        {
-            AudioClip.Stop(); // or Pause()
-        }
-        
         if(!_checkedForControllers && InputHandler.instance != null)
         {
             _checkedForControllers = true;
@@ -80,14 +71,22 @@ public class PlayerController : MonoBehaviour
             float moveHorizontal = 0;
             float moveVertical = 0;
 
-
-            
-
             if (SettingsController.UserInput)
             {
                 moveHorizontal = SettingsController.InvertMovementX ? -InputHandler.instance.GetAxis("MoveX") : InputHandler.instance.GetAxis("MoveX");
 
                 moveVertical = SettingsController.InvertMovementY ? -InputHandler.instance.GetAxis("MoveY") : InputHandler.instance.GetAxis("MoveY");
+
+                if((moveHorizontal != 0 || moveVertical != 0) && !_isPlayingAudio)
+                {
+                    _isPlayingAudio = true;
+                    AudioClip.Play();
+                }
+                else if(moveHorizontal == 0 && moveVertical == 0 && _isPlayingAudio)
+                {
+                    _isPlayingAudio = false;
+                    AudioClip.Stop(); // or Pause()
+                }
             }
 
             Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
@@ -111,6 +110,14 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if(!SettingsController.UserInput)
+            {
+                if(_isPlayingAudio)
+                {
+                    _isPlayingAudio = false;
+                    AudioClip.Stop(); // or Pause()
+                }
+            }
             anim.SetFloat ("MoveAmount", 0);
         }
         

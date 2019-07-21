@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public enum ControllerType
 {
     None,
@@ -18,6 +18,7 @@ public class InputHandler: MonoBehaviour
     public static InputHandler instance = null;
     public ControllerType connectedController;
     private Joystick touchMovement = null;
+    public Text debugText = null;
 
     private void Start() {
         if(instance != null)
@@ -62,12 +63,21 @@ public class InputHandler: MonoBehaviour
         connectedController = ControllerType.None;
     }
 
-    // private void Update() {
-    //     // Debug.Log("RightX: " + GetAxis("LookX") + 
-    //     //             "   RightY: " + GetAxis("LookY") + 
-    //     //             "   MoveX: " + GetAxis("MoveX") + 
-    //     //             "   MoveY: " + GetAxis("MoveY"));
-    // }
+    private void Update() {
+        // Debug.Log("RightX: " + GetAxis("LookX") + 
+        //             "   RightY: " + GetAxis("LookY") + 
+        //             "   MoveX: " + GetAxis("MoveX") + 
+        //             "   MoveY: " + GetAxis("MoveY"));
+        // if(debugText)
+        // {
+        //     debugText.text = ("RX: " + GetAxis("LookX") + 
+        //             "   RY: " + GetAxis("LookY") + 
+        //             "   MX: " + GetAxis("MoveX") + 
+        //             "   MY: " + GetAxis("MoveY"));
+        // }
+        
+    }
+
 
     public float GetAxis(string axis)
     {
