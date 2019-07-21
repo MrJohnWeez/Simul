@@ -8,14 +8,27 @@ public class PlayerController : MonoBehaviour
     public bool isActive = true;
     public Animator anim;
 
-    // Player jump vars
+    [Header("Player jump vars")]
     public LayerMask layersToJumpOn;
     public float jumpHeight = 1000;
     public float inAirGravity = 20f;
-    
-
     public GameObject cameraPlaceholder = null;
     public float moveSpeed = 5600;
+    
+    [Header("Camera Properties")]
+    public Transform target;
+    public float defualtSmoothing = 0.0f;
+    public float verticalRotation = 0.0f;
+    public float horizontalRotation = 180.0f;
+    public float distanceAway = 2.81f;
+    public Vector3 CamOffset = new Vector3(0,0.6f,0);
+
+    [Header("Camera Limits")]
+    public float verticleRotationLimitMin = 89;
+    public float verticleRotationLimitMax = 22;
+    public float maxDistanceAway = 3;
+    public float minDistanceAway = 0.1f;
+    public LayerMask layerMaskToExclude;
 
     private Rigidbody rb = null;
     private Vector3 motion;
@@ -23,20 +36,25 @@ public class PlayerController : MonoBehaviour
 
     //Sound Vars
     public AudioSource AudioClip = null;
-
-    // Camera control variables
-    private GameObject mainCamera = null;
-    public float cameraRotateSpeed = 2;
-    public Vector3 cameraOffset; 
-    float currentCameraRotation;
-    private ControllerType controllerType = ControllerType.None;
-    private bool checkedForControllers = false;
+    private GameObject camMask;
+    private Vector3 _distanceOffset;
+    private Vector3 _targetOffset;
+    private Quaternion _newRotation;
+    private bool _camHittingWall = false;
+    private float smooth = 0f;
+    private GameObject _mainCamera = null;
+    private bool _checkedForControllers = false;
 
     void Start()
     {
+        camMask = new GameObject("camTransform");
+        camMask.transform.position = cameraPlaceholder.transform.position;
+        camMask.transform.rotation = cameraPlaceholder.transform.rotation;
+        camMask.transform.localScale = cameraPlaceholder.transform.localScale;
+        smooth = defualtSmoothing;
+
         rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main.gameObject;
-        cameraOffset = cameraPlaceholder.transform.position - transform.position;
+        _mainCamera = Camera.main.gameObject;
     }
 
     private void Update()
@@ -50,10 +68,10 @@ public class PlayerController : MonoBehaviour
         {
             AudioClip.Stop(); // or Pause()
         }
-
-        if (!checkedForControllers && InputHandler.instance != null)
+        
+        if(!_checkedForControllers && InputHandler.instance != null)
         {
-            checkedForControllers = true;
+            _checkedForControllers = true;
             InputHandler.instance.CheckForConnectedControllers();
         }
 
@@ -67,11 +85,9 @@ public class PlayerController : MonoBehaviour
 
             if (SettingsController.UserInput)
             {
-                moveHorizontal = InputHandler.instance.GetAxisRaw("Horizontal");
-                moveVertical = InputHandler.instance.GetAxisRaw("Vertical");
-                
+                moveHorizontal = SettingsController.InvertMovementX ? -InputHandler.instance.GetAxis("MoveX") : InputHandler.instance.GetAxis("MoveX");
 
-
+                moveVertical = SettingsController.InvertMovementY ? -InputHandler.instance.GetAxis("MoveY") : InputHandler.instance.GetAxis("MoveY");
             }
 
             Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
@@ -105,13 +121,26 @@ public class PlayerController : MonoBehaviour
 
         if(isActive && SettingsController.UserInput)
         {
-            float horizontal = 0;
-            horizontal = InputHandler.instance.GetAxis("LookX") * cameraRotateSpeed;
-            currentCameraRotation += horizontal * cameraRotateSpeed;
+            int invertX = SettingsController.InvertCameraX ? -1 : 1;
+            int invertY = SettingsController.InvertCameraY ? -1 : 1;
 
-            cameraPlaceholder.transform.position = transform.position + cameraOffset;
-            cameraPlaceholder.transform.LookAt(transform);
-            cameraPlaceholder.transform.RotateAround(transform.position, transform.up, currentCameraRotation);
+            //Debug.Log("LookY: " + InputHandler.instance.GetAxis("LookY") + "   LookX: " + InputHandler.instance.GetAxis("LookX"));
+            // Get inputs
+            verticalRotation += InputHandler.instance.GetAxis("LookY") * SettingsController.CameraSensitivityY * 0.1f * invertX;
+            horizontalRotation += InputHandler.instance.GetAxis("LookX") * SettingsController.CameraSensitivityX * 0.1f * invertY;
+
+            // Determine camera position and rotation
+            _targetOffset = target.position + CamOffset;
+            _distanceOffset = new Vector3(0, 0, Mathf.Clamp(distanceAway, minDistanceAway, maxDistanceAway));
+            verticalRotation = Mathf.Clamp(verticalRotation, -verticleRotationLimitMin, verticleRotationLimitMax);
+            _newRotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0);
+
+            camMask.transform.position = _targetOffset + _newRotation * _distanceOffset;
+            camMask.transform.LookAt(_targetOffset);
+
+            // Wall detection and smoothing
+            _camHittingWall = WallDetection(ref _targetOffset);
+            smoothCamMethod();
         }
     }
 
@@ -131,18 +160,68 @@ public class PlayerController : MonoBehaviour
         if(!isGrounded)
             rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
 
+        
         // Disable jump because it is not used in our game and is buggy
         // if(isGrounded && InputHandler.instance.GetButtonDown("DownButton") && SettingsController.UserInput)
         //     rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
     }
 
+    /// <summary>
+    /// Smooths the camera follow and prevents bouncy camera motion
+    /// </summary>
+    void smoothCamMethod()
+	{
+        float lagDistance = Vector3.Distance(cameraPlaceholder.transform.position, camMask.transform.position);
+        if(!_camHittingWall && lagDistance > maxDistanceAway)
+        {
+            smooth = defualtSmoothing;
+            cameraPlaceholder.transform.position = Vector3.Lerp(cameraPlaceholder.transform.position, camMask.transform.position, Time.deltaTime * smooth);
+            cameraPlaceholder.transform.rotation = Quaternion.Lerp(cameraPlaceholder.transform.rotation, camMask.transform.rotation, Time.deltaTime * smooth);
+        }
+        else
+        {
+            smooth = defualtSmoothing + Mathf.Pow(defualtSmoothing, (lagDistance - maxDistanceAway * 10));
+            cameraPlaceholder.transform.position = Vector3.Lerp(cameraPlaceholder.transform.position, camMask.transform.position, Time.deltaTime * smooth);
+            cameraPlaceholder.transform.rotation = Quaternion.Lerp(cameraPlaceholder.transform.rotation, camMask.transform.rotation, Time.deltaTime * smooth);
+        }
+        
+    }
+
+	/// <summary>
+    /// Overrides the camera position if a wall is hit
+    /// </summary>
+    bool WallDetection(ref Vector3 targetFollow)
+	{
+        RaycastHit wallHit = new RaycastHit();
+        //linecast from your player (targetFollow) to your cameras mask (camMask) to find collisions.
+		Debug.DrawRay(targetFollow, camMask.transform.position, Color.blue);
+
+        int layerNumber = (int)(Mathf.Log((uint)layerMaskToExclude.value, 2));
+        
+        if(Physics.Linecast(targetFollow, camMask.transform.position, out wallHit, layerNumber)){
+            //the smooth is increased so you detect geometry collisions faster.
+            smooth = defualtSmoothing * 2;
+            //the x and z coordinates are pushed away from the wall by hit.normal.
+            //the y coordinate stays the same.
+            camMask.transform.position = new Vector3(wallHit.point.x + wallHit.normal.x * 0.5f, 
+                                                    camMask.transform.position.y, 
+                                                    wallHit.point.z + wallHit.normal.z * 0.5f);
+
+			Debug.DrawRay(targetFollow, new Vector3(wallHit.point.x + wallHit.normal.x * 0.5f, 
+                                                    camMask.transform.position.y, 
+                                                    wallHit.point.z + wallHit.normal.z * 0.5f), 
+                                                    Color.green);
+            return true;
+        }
+        return false;
+    }
+
     void LateUpdate()
     {
         if(isActive && SettingsController.UserInput)
-        {
-            
-            mainCamera.transform.position = cameraPlaceholder.transform.position;
-            mainCamera.transform.rotation = cameraPlaceholder.transform.rotation;
+        { 
+            _mainCamera.transform.position = cameraPlaceholder.transform.position;
+            _mainCamera.transform.rotation = cameraPlaceholder.transform.rotation;
         }
     }
 }
