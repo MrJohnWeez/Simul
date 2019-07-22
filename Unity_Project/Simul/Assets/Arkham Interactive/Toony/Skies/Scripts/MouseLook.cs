@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+#pragma warning disable 0618
 public class MouseLook : MonoBehaviour
 {
 	

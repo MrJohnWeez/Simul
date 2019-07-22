@@ -20,7 +20,7 @@ public abstract class BaseLevel : MonoBehaviour
     }
 
     /// <summary> Check if both players are standing in the end areas </summary>
-    public void CheckIfPlayersAreFinished()
+    public virtual void CheckIfPlayersAreFinished()
     {
         if(Player1Finished && Player2Finished && !finishedLevel)
         {
@@ -28,6 +28,7 @@ public abstract class BaseLevel : MonoBehaviour
             FinishedLevel();
         }
     }
+
 
     private void Update() {
         if(SettingsController.UserInput && InputHandler.instance.GetButtonDown("UpButton"))

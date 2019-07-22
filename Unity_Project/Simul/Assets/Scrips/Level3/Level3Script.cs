@@ -6,6 +6,8 @@ public class Level3Script : BaseLevel
 {
     protected override void Start() {
         base.Start();
+        SettingsController.UserInput = true;
+        SettingsController.IsPaused = false;
         playerSwitcher.UpdateActive(true);
     }
 
@@ -17,6 +19,15 @@ public class Level3Script : BaseLevel
         PlayerPrefs.SetInt("level3Unlocked", 1);
         MainMenu.forceAboutMenu = true;
         sceneController.MainMenu();
+    }
+
+    public override void CheckIfPlayersAreFinished()
+    {
+        if(Level3Trigger.playersAtEnd == 2 && !finishedLevel)
+        {
+            finishedLevel = true;
+            FinishedLevel();
+        }
     }
 
     public override void RestartLevel()

@@ -42,7 +42,7 @@
  * isDraggable (true, false)  Toggles mouse drag functionality
  * =========================================================================*/
 
-
+#pragma warning disable 0618
 using UnityEngine;
 using System.Collections;
 

@@ -6,6 +6,8 @@ public class Level2Script : BaseLevel
 {
     protected override void Start() {
         base.Start();
+        SettingsController.UserInput = true;
+        SettingsController.IsPaused = false;
         playerSwitcher.UpdateActive(true);
     }
 

@@ -13,7 +13,6 @@ public class PressureToggle : MonoBehaviour
     public AudioSource AudioClip;
     private bool isTriggered = false;
     private bool preIsTriggered = false;
-    private MeshRenderer render = null;
     private Animator animator = null;
     
     void Start()

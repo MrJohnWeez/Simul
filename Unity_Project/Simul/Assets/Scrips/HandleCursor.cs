@@ -11,10 +11,22 @@ public class HandleCursor : MonoBehaviour
             {
                 Cursor.visible = false;
             }
-            if(Cursor.lockState != CursorLockMode.Locked)
+
+            if(Input.touchCount > 0)
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                if(Cursor.lockState != CursorLockMode.None)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
             }
+            else
+            {
+                if(Cursor.lockState != CursorLockMode.Locked)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+            
         #endif
     }
 }

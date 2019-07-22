@@ -16,7 +16,6 @@ public class SettingsController : MonoBehaviour
     public GameObject highlightJoystickRight;
     public GameObject highlightJoystickLeft;
     public static bool joystickIsRight = true;
-    private bool oldUserInput = true;
     public GameObject resetMenu = null;
     public SceneController sceneController = null;
 

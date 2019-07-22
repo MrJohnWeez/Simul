@@ -25,12 +25,14 @@ public class PlayerSwitcher : MonoBehaviour
         if(SettingsController.UserInput && InputHandler.instance.GetButtonDown("LeftButton"))
         {
             TogglePlayer();
+            
         }
     }
 
     /// <summary> Toggles what player the user controls </summary>
     public void TogglePlayer()
     {
+        //Debug.Log("Update: " + isFirstPlayer + "    " + firstPC.isActive + "     " + secondPC.isActive);
         isFirstPlayer = !isFirstPlayer;
         UpdateActive(isFirstPlayer);
     }

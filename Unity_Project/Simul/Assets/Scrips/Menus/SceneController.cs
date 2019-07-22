@@ -8,32 +8,32 @@ public class SceneController: MonoBehaviour
 {
     public void Level3SinglePlayer()
     {
-        SceneManager.LoadScene("Level3", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level3");
     }
 
     public void Level2SinglePlayer()
     {
-        SceneManager.LoadScene("Level2", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level2");
     }
 
     public void Level1SinglePlayer()
     {
-        SceneManager.LoadScene("Level1", LoadSceneMode.Single);
+        SceneManager.LoadScene("Level1");
     }
 
     public void TutorialLevel()
     {
-        SceneManager.LoadScene("TutorialLevel", LoadSceneMode.Single);
+        SceneManager.LoadScene("TutorialLevel");
     }
 
     public void LevelSelection()
     {
-        SceneManager.LoadScene("LevelSelection", LoadSceneMode.Single);
+        SceneManager.LoadScene("LevelSelection");
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainMenu");
     }
     
     /// <summary> Quit the game or stop playing if in editor </summary>
