@@ -7,17 +7,22 @@ public class PlayerSwitcher : MonoBehaviour
 {
     public GameObject firstPlayer = null;
     public GameObject secondPlayer = null;
+    public LayerMask player1Culling;
+    public LayerMask player2Culling;
     public SceneController sceneController = null;
 
     private PlayerController firstPC = null;
     private PlayerController secondPC = null;
 
     private bool isFirstPlayer = true;
+    private Camera mainCam = null;
+    
 
     void Awake()
     {
         firstPC = firstPlayer.GetComponent<PlayerController>();
         secondPC = secondPlayer.GetComponent<PlayerController>();
+        mainCam = GetComponent<Camera>();
     }
 
     void Update()
@@ -40,6 +45,14 @@ public class PlayerSwitcher : MonoBehaviour
     /// <summary> Control what player user can control </summary>
     public void UpdateActive(bool firstIsActive)
     {
+        if(firstIsActive)
+        {
+            mainCam.cullingMask = player1Culling;
+        }
+        else
+        {
+            mainCam.cullingMask = player2Culling;
+        }
         firstPC.isActive = firstIsActive;
         secondPC.isActive = !firstIsActive;
     }
