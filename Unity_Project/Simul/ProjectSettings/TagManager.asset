@@ -6,6 +6,7 @@ TagManager:
   tags:
   - IsWeight
   - debugText
+  - BGMusic
   layers:
   - Default
   - TransparentFX
