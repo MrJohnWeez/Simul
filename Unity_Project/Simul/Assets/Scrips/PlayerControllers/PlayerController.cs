@@ -122,8 +122,8 @@ public class PlayerController : MonoBehaviour
         }
         
 
-        RaycastHit hit;
-        isGrounded = Physics.Raycast(transform.position + new Vector3(0,0.1f,0), -transform.up, out hit, 0.2f, layersToJumpOn);
+        // RaycastHit hit;
+        // isGrounded = Physics.Raycast(transform.position + new Vector3(0,0.1f,0), -transform.up, out hit, 0.001f, layersToJumpOn);
 
 
         if(isActive && SettingsController.UserInput)
@@ -160,11 +160,10 @@ public class PlayerController : MonoBehaviour
         if(isActive)
         {
             rb.AddForce(motion * moveSpeed, ForceMode.Force);
-            
         }
 
-        if(!isGrounded)
-            rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
+        // if(!isGrounded)
+        rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
 
         
         // Disable jump because it is not used in our game and is buggy

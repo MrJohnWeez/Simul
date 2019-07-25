@@ -3180,11 +3180,11 @@ MonoBehaviour:
   anim: {fileID: 245807552239798658}
   layersToJumpOn:
     serializedVersion: 2
-    m_Bits: 3383
+    m_Bits: 4294967295
   jumpHeight: 1000
   inAirGravity: 50
   cameraPlaceholder: {fileID: 5741125708125453231}
-  moveSpeed: 5600
+  moveSpeed: 7200
   target: {fileID: 1732896133355154482}
   defualtSmoothing: 0
   verticalRotation: 0
