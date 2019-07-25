@@ -18,7 +18,7 @@ public class FloatingJoystick : Joystick
     
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if(eventData.pointerId < 0 || !SettingsController.UserInput)
+        if(eventData.pointerId < 0 || !SettingsController.UserInput || !SettingsController.IsPaused)
         {
             return;
         }

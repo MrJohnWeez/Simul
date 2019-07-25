@@ -131,7 +131,6 @@ public class PlayerController : MonoBehaviour
             int invertX = SettingsController.InvertCameraX ? -1 : 1;
             int invertY = SettingsController.InvertCameraY ? -1 : 1;
 
-            //Debug.Log("LookY: " + InputHandler.instance.GetAxis("LookY") + "   LookX: " + InputHandler.instance.GetAxis("LookX"));
             // Get inputs
             verticalRotation += InputHandler.instance.GetAxis("LookY") * SettingsController.CameraSensitivityY * 0.1f * invertX;
             horizontalRotation += InputHandler.instance.GetAxis("LookX") * SettingsController.CameraSensitivityX * 0.1f * invertY;

@@ -38,11 +38,14 @@ public class InGameMenu : MonoBehaviour
     }
     public void OpenPauseMenu()
     {
-        SettingsController.UserInput = false;
-        SettingsController.IsPaused = true;
-        pauseMenu.SetActive(true);
-        ControlsMenu.SetActive(false);
-        settingsMenu.SetActive(false);
+        if(SettingsController.UserInput || SettingsController.IsPaused)
+        {
+            SettingsController.UserInput = false;
+            SettingsController.IsPaused = true;
+            pauseMenu.SetActive(true);
+            ControlsMenu.SetActive(false);
+            settingsMenu.SetActive(false);
+        }
     }
 
     public void OpenSettingsMenu()

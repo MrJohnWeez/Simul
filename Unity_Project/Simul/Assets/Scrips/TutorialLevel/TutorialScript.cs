@@ -27,7 +27,7 @@ public class TutorialScript : BaseLevel
 
     public override void RestartLevel()
     {
-        SettingsController.UserInput = true;
+        SettingsController.UserInput = false;
         SettingsController.IsPaused = false;
         sceneController.TutorialLevel();
     }

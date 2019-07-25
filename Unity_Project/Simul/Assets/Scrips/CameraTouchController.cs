@@ -11,7 +11,7 @@ public class CameraTouchController : MonoBehaviour, IDragHandler, IEndDragHandle
 
     public void OnDrag(PointerEventData data)
     {
-        if (data.dragging && SettingsController.UserInput)
+        if (data.dragging && SettingsController.UserInput && !SettingsController.IsPaused)
         {
             delta = data.delta;
             delta.x = delta.x / 25;

@@ -5889,7 +5889,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Switch characters and trigger the switch.
+  m_Text: Switch characters and push the block onto the pressure plate.
 --- !u!222 &593201690
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7736,7 +7736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Both characters need to step onto the end platforms.
+  m_Text: Both characters need reach the rainbow beams.
 --- !u!222 &812868880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16265,7 +16265,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Oh-no! The rope broke leaving a teammate behind!
+  m_Text: Oh-no! The rope broke, leaving a teammate behind!
 --- !u!222 &1661508159
 CanvasRenderer:
   m_ObjectHideFlags: 0
