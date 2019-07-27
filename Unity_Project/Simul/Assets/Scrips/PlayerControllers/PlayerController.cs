@@ -66,6 +66,15 @@ public class PlayerController : MonoBehaviour
             InputHandler.instance.CheckForConnectedControllers();
         }
 
+        if(!SettingsController.UserInput || SettingsController.IsPaused)
+        {
+            if(_isPlayingAudio)
+            {
+                _isPlayingAudio = false;
+                AudioClip.Stop(); // or Pause()
+            }
+        }
+
         if(isActive)
         {
             float moveHorizontal = 0;
@@ -110,21 +119,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(!SettingsController.UserInput)
-            {
-                if(_isPlayingAudio)
-                {
-                    _isPlayingAudio = false;
-                    AudioClip.Stop(); // or Pause()
-                }
-            }
             anim.SetFloat ("MoveAmount", 0);
         }
-        
-
-        // RaycastHit hit;
-        // isGrounded = Physics.Raycast(transform.position + new Vector3(0,0.1f,0), -transform.up, out hit, 0.001f, layersToJumpOn);
-
 
         if(isActive && SettingsController.UserInput)
         {
@@ -162,13 +158,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(motion * moveSpeed, ForceMode.Force);
         }
 
-        // if(!isGrounded)
         rb.AddForce(new Vector3(0,-inAirGravity, 0), ForceMode.Acceleration);
-
-        
-        // Disable jump because it is not used in our game and is buggy
-        // if(isGrounded && InputHandler.instance.GetButtonDown("DownButton") && SettingsController.UserInput)
-        //     rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
     }
 
     /// <summary>

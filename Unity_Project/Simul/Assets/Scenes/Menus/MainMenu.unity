@@ -2823,7 +2823,7 @@ MonoBehaviour:
     m_LineSpacing: 0.5
   m_Text: '
 
-    Level Desgin / Programmer'
+    Level Design / Programmer'
 --- !u!222 &1732957338
 CanvasRenderer:
   m_ObjectHideFlags: 0
